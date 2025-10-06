@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap');
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.body{
+    font-family: 'Albert Sans', sans-serif;
+    padding-bottom: 60px;
+}
+.navbar{
+    background-color: #192338 !important;
+    font-family: 'Albert Sans', sans-serif;
+}
+
+.footer{             
+    font-family: 'Albert Sans', sans-serif;
+    background-color: #192338 !important;
+    color: white !important;
+    text-align: center;
+    padding: 18px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/*hero style*/
+.badgeTop{
+  background-color: #8FB3E2 !important;
+  color: #31487A !important;
+  font-size: 1rem !important;
+  padding: 0.6em 1em !important;
+  border-radius: 0.5rem !important;
+}
+
+.hero-section {
+  background: url("../assets/bg.jpg") no-repeat center center;
+  background-size: cover;
+  min-height: 60vh;
+  color: white;
+  position: relative;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.btnStart{
+  background-color: #8FB3E2 !important; 
+  color: #31487A !important;
+  padding: 10px 20px !important;
+  border-radius:30px !important;
+  border: none;
+  font-weight: 700 !important;
+}
+
+.btnStart:hover {
+  background-color: #9ec6fc !important;
+  color: #31487A !important;
+}
+
+.btnExplore{
+  background-color: transparent !important; 
+  border: 2px solid #8FB3E2 !important;
+  color: #8FB3E2 !important;
+  padding: 10px 20px !important;
+  border-radius: 30px !important;
+  font-weight: 700 !important;
+  transition: all 0.3s ease;
+}
+
+.btnExplore:hover {
+  background-color: #8FB3E2 !important;
+  color: #31487A !important;
+}
+
+/*description style*/
+.description {
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+}
+
+.bg-connectus {
+  background-color: #D9E1F1;
+  box-shadow: 0 4px 20px rgba(75, 73, 73, 0.3);
+  color: #31487A;
+  border-radius: 30px;
+}
+
+.logo-large {
+  max-width: 400px;
+  min-width: 200px;
+  width: 100%;
+}
+
+/*search style*/
+.introText{
+    margin-top: 100px !important;
+}
+
+.intro-Header{
+    color:#31487A !important;
+    font-weight: 900 !important;
+}
+
+.searchBox-bg{
+    border-radius: 20px !important;
+}
+
+.searchBox{
+    padding: 17px !important;
+    border-radius: 20px !important;
+}
+
+.services{
+    margin-bottom: 100px !important;
+}
+
+.service-list {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.service {
+    flex: 70px; 
+    max-width: 175px;
+    background-color: #5f6b81;
+    color: white;
+    padding: 30px 25px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service:hover {
+    transform: translateY(-6px);
+    background-color: #4e5973;
+    box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/*CTA style*/
+.cta-section .card {
+  background: #D9E1F1;
+  transition: transform 0.2s ease;
+}
+
+.cta-section .card:hover {
+  background-color: #cedbf3;
+  transform: translateY(-6px);
+}
+
+.cta-section h3 {
+  font-size: 24px;
+  color: #192338;
+}
+
+.cta-section p {
+  font-size: 16px;
+  color: #192338;
+}
+
+.cta-section .btn {
+  border-radius: 30px;
+  background-color: #31487A;
+  color:white;
+}
+
+.cta-section .btn:hover {
+  border-radius: 30px;
+  background-color: #4f628b;
+  color:white;
+}
+
+.service-CTA{
+  color:#2c4883;
+}
+
+/*login-box style*/
+
+.login-box{
+  background-color: #c8d1df !important;
+  width:25rem;
+  padding: 40px !important;
+  border-radius: 15px !important;
+}
+
+.login-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #192338;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  background-color: #e3e8f2;
+  outline: none;
+}
+
+.login-box button {
+  width: 40%;
+  padding: 10px;
+  background-color: #192338;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  display: block;      
+  margin: 0 auto;      
+} 
+
+.login-box button:hover{
+  background-color: #353f50;
+  color: white;
+}
+
+.logo-img {
+  max-width: 280px;  
+  height: auto;      
+  display: block;
+  margin: 0 auto;
+}
+
+/*registration style*/
+.registration input{
+  width: 750px !important;
+  padding: 10px 10px !important;
+  border-radius: 15px;
+}
+
+.upload-box{
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px dashed #6c757d;
+  color: black;
+  background-color: #f8f9fa;
+}
+
+.upload-box:hover {
+  border-color: #353f50;
+  color: #353f50;
+}
+
+.preview{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-input{
+  display: none;
+}
+
+.upload button{
+  width: 40%;
+  padding: 10px;
+  margin-top: 75px !important;
+  background-color: #192338;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  display: block;      
+  margin: 0 auto;   
+}
+
+.upload button:hover{
+  background-color: #353f50;
+  color: white;
+}
+
+/*provider registration*/
+.registration-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.form-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.form-grid.one-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.form-left {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.required {
+  color: red;
+  margin-right: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 10px !important;
+  border-radius: 15px;
+}
+
+.form-right {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 280px;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.description-section label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.description-section textarea {
+  padding: 0.8rem;
+  min-height: 120px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+}
+
+.register-btn {
+  width: 40%;
+  padding: 10px;
+  margin-top: 25px !important;
+  background-color: #192338;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  display: block;      
+  margin: 0 auto;  
+}
+
+.register-btn:hover {
+  background-color: #353f50;
+  color: white;
+}

@@ -399,3 +399,84 @@ main {
   background-color: #353f50;
   color: white;
 }
+
+/*Register As*/
+
+.registeras-container {
+  background-color: #e4ebfa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.registeras-content {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.registeras-title {
+  font-size: 1.5rem;
+  color: #111;
+  margin-bottom: 60px;
+}
+
+.registeras-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.registeras-btn {
+  background-color: #5f6b8a;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 60px 90px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.registeras-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.registeras-top {
+  font-weight: 600;
+  color: #dae1f1;
+  font-size: 3rem;
+}
+
+.registeras-bottom {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.seeker-text {
+  color: #feb06a;
+}
+
+.provider-text {
+  color: #73bbee;
+}
+
+.provider {
+  background-color: #7f848f;
+}
+
+.registeras-btn {
+  text-decoration: none;
+}
+
+.registeras-btn:hover {
+  text-decoration: none;
+}
+

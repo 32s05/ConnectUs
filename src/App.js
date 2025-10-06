@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import CustomerRegistration from "./pages/Registration_Customer";
 import ProviderRegistration from "./pages/Registration_Provider";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RegisterAs from "./pages/RegisterAs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/CustomerRegistration" element={<CustomerRegistration />} />
         <Route path="/ProviderRegistration" element={<ProviderRegistration/>} />
+        <Route path="/Registration" element={<RegisterAs />} />
       </Routes>
       <FooterComponent />
     </Router>

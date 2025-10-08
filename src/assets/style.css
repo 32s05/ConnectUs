@@ -18,6 +18,7 @@ main {
     font-family: 'Albert Sans', sans-serif;
     padding-bottom: 60px;
 }
+
 .navbar{
     background-color: #192338 !important;
     font-family: 'Albert Sans', sans-serif;
@@ -33,8 +34,8 @@ main {
     letter-spacing: 1px;
 }
 
-/* hero section */
-.badgeTop {
+/*hero style*/
+.badgeTop{
   background-color: #8FB3E2 !important;
   color: #31487A !important;
   font-size: 1rem !important;
@@ -42,55 +43,33 @@ main {
   border-radius: 0.5rem !important;
 }
 
-@media (max-width: 576px) {
-  .badgeTop {
-    font-size: 12px !important;
-    padding: 6px 10px !important;
-    width: auto;
-    max-width: 90%; /* ensures it fits within screen width */
-    text-align: center;
-    display: inline-block;
-    white-space: normal; /* allow wrapping if needed */
-    line-height: 1.4;
-    word-break: break-word; /* prevents overflow on long words */
-  }
-}
-
 .hero-section {
   background: url("../assets/bg.jpg") no-repeat center center;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 50vh;
   color: white;
   position: relative;
-  display: flex;
-  justify-content: flex-start; 
-  background-blend-mode: darken !important;
-  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .hero-section .container {
   position: relative;
   z-index: 1;
-  max-width: 900px;
 }
 
-.hero-section h1 {
-  line-height: 1.3;
-  margin-bottom: 1.2rem;
-}
-
-.hero-section p {
-  margin-bottom: 1.5rem;
-}
-
-.btnStart {
-  background-color: #8FB3E2 !important;
+.btnStart{
+  background-color: #8FB3E2 !important; 
   color: #31487A !important;
-  padding: 10px 25px !important;
-  border-radius: 30px !important;
+  padding: 10px 20px !important;
+  border-radius:30px !important;
   border: none;
   font-weight: 700 !important;
-  transition: all 0.3s ease;
 }
 
 .btnStart:hover {
@@ -98,11 +77,11 @@ main {
   color: #31487A !important;
 }
 
-.btnExplore {
-  background-color: transparent !important;
+.btnExplore{
+  background-color: transparent !important; 
   border: 2px solid #8FB3E2 !important;
   color: #8FB3E2 !important;
-  padding: 10px 25px !important;
+  padding: 10px 20px !important;
   border-radius: 30px !important;
   font-weight: 700 !important;
   transition: all 0.3s ease;
@@ -113,16 +92,11 @@ main {
   color: #31487A !important;
 }
 
-.hero-section .d-flex {
-  gap: 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-}
-
 /*description style*/
 .description {
   padding-top: 10px; 
   padding-bottom: 10px; 
+  margin: 5px;
 }
 
 .bg-connectus {

@@ -22,7 +22,7 @@ function HeroComponent() {
               Whether you're starting fresh, expanding your network, or just looking for 
               the right solution, ConnectUs brings services closer to you.
             </p>
-            <div className="d-flex gap-3 mt-4">
+            <div className="d-flex gap-3 mt-4 mb-5">
               <button className="btn btn-lg btnStart">Get Started</button>
               <button className="btn btn-lg btnExplore">Explore Services</button>
             </div>

@@ -8,10 +8,10 @@ function HeroComponent() {
         <div className="row align-items-center">
           
           <div className="col-md-8 mt-5">
-            <span className="badge mb-3 badgeTop">
+            <span className="badge mb-1 badgeTop">
                 🚀 Finding the right service has never been easier!
             </span>
-            <h1 className="mt-3 mb-4 display-4 fw-bold">
+            <h1 className="mt-3 mb-4 display-3 fw-bold">
                 Connect with trusted services <br /> anytime, anywhere.
             </h1>
             <p className="lead mt-3">

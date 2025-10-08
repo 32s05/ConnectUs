@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import CustomerRegistration from "./pages/Registration_Customer";
 import ProviderRegistration from "./pages/Registration_Provider";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterAs from "./pages/RegisterAs";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

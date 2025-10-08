@@ -7,7 +7,6 @@ const RegisterAs = () => {
   return (
     <div className="registeras-container">
         <RegAs />
-
     </div>
   );
 };

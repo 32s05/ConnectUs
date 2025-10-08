@@ -403,8 +403,8 @@ main {
 /*Register As*/
 
 .registeras-container {
-  background-color: #e4ebfa;
-  min-height: 100vh;
+  font-family: 'Albert Sans', sans-serif;
+  min-height: 53vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

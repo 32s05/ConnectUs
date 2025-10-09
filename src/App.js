@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import CustomerRegistration from "./pages/Registration_Customer";
 import ProviderRegistration from "./pages/Registration_Provider";
 import RegisterAs from "./pages/RegisterAs";
+import Dashboard from "./pages/Dashboard";  
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
         <Route path="/CustomerRegistration" element={<CustomerRegistration />} />
         <Route path="/ProviderRegistration" element={<ProviderRegistration/>} />
         <Route path="/Registration" element={<RegisterAs />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <FooterComponent />
     </Router>

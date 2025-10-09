@@ -26,12 +26,14 @@ function Picture() {
                 </div>
 
                 <div className="upload-box-container">
-                    <label htmlFor="profilePhoto" className="upload-box d-flex justify-content-center align-items-center rounded-4">
+                    <label htmlFor="profilePhoto" className="upload-box d-flex mt-4 justify-content-center align-items-center rounded-4">
                         {profilePreview ? (<img src={profilePreview} alt="Profile Preview" className="preview"/>) : ("Upload Profile Photo")}
                     </label>
                     <input type="file" id="profilePhoto" accept="image/*" onChange={handleProfileChange} className="upload-input"/>
                 </div>
             </div>
+
+            <button type="submit" className="btn">Register</button>
         </div>
     );
 }

@@ -18,7 +18,6 @@ main {
     font-family: 'Albert Sans', sans-serif;
     padding-bottom: 60px;
 }
-
 .navbar{
     background-color: #192338 !important;
     font-family: 'Albert Sans', sans-serif;
@@ -34,8 +33,8 @@ main {
     letter-spacing: 1px;
 }
 
-/*hero style*/
-.badgeTop{
+/* hero section */
+.badgeTop {
   background-color: #8FB3E2 !important;
   color: #31487A !important;
   font-size: 1rem !important;
@@ -43,33 +42,55 @@ main {
   border-radius: 0.5rem !important;
 }
 
+@media (max-width: 576px) {
+  .badgeTop {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+    width: auto;
+    max-width: 90%;
+    text-align: center;
+    display: inline-block;
+    white-space: normal;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+}
+
 .hero-section {
   background: url("../assets/bg.jpg") no-repeat center center;
   background-size: cover;
-  min-height: 50vh;
+  min-height: 100vh;
   color: white;
   position: relative;
-}
-
-.hero-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-start; 
+  background-blend-mode: darken !important;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero-section .container {
   position: relative;
   z-index: 1;
+  max-width: 900px;
 }
 
-.btnStart{
-  background-color: #8FB3E2 !important; 
+.hero-section h1 {
+  line-height: 1.3;
+  margin-bottom: 1.2rem;
+}
+
+.hero-section p {
+  margin-bottom: 1.5rem;
+}
+
+.btnStart {
+  background-color: #8FB3E2 !important;
   color: #31487A !important;
-  padding: 10px 20px !important;
-  border-radius:30px !important;
+  padding: 10px 25px !important;
+  border-radius: 30px !important;
   border: none;
   font-weight: 700 !important;
+  transition: all 0.3s ease;
 }
 
 .btnStart:hover {
@@ -77,11 +98,11 @@ main {
   color: #31487A !important;
 }
 
-.btnExplore{
-  background-color: transparent !important; 
+.btnExplore {
+  background-color: transparent !important;
   border: 2px solid #8FB3E2 !important;
   color: #8FB3E2 !important;
-  padding: 10px 20px !important;
+  padding: 10px 25px !important;
   border-radius: 30px !important;
   font-weight: 700 !important;
   transition: all 0.3s ease;
@@ -92,11 +113,16 @@ main {
   color: #31487A !important;
 }
 
+.hero-section .d-flex {
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
 /*description style*/
 .description {
   padding-top: 10px; 
   padding-bottom: 10px; 
-  margin: 5px;
 }
 
 .bg-connectus {
@@ -255,14 +281,15 @@ main {
 
 /*registration style*/
 .registration input{
-  width: 750px !important;
+  width: 100% !important;
+  max-width: 750px;
   padding: 10px 10px !important;
   border-radius: 15px;
 }
 
 .upload-box{
-  width: 250px;
-  height: 250px;
+  width: 75%;
+  aspect-ratio: 1/1 !important;
   cursor: pointer;
   overflow: hidden;
   border: 2px dashed #6c757d;
@@ -285,24 +312,42 @@ main {
   display: none;
 }
 
-.upload button{
-  width: 40%;
+.btn-Register{
+  width: 30%;
   padding: 10px;
-  margin-top: 75px !important;
+  margin-top: 10px !important;
   background-color: #192338;
   color: white;
   font-weight: 600;
   border: none;
-  border-radius: 20px;
-  font-size: 20px;
+  border-radius: 30px;
+  font-size: 30px;
   cursor: pointer;
   display: block;      
   margin: 0 auto;   
 }
 
-.upload button:hover{
+.btn-Register:hover{
   background-color: #353f50;
   color: white;
+}
+
+@media (max-width: 576px) {
+  .registration input {
+    width: 90% !important;
+    padding: 8px !important;
+    margin: 3px auto !important;
+  }
+
+  .upload-box{
+    width: 70%;
+  }
+
+  .btn-Register {
+    width: 80%;
+    font-size: 20px;
+    padding: 8px;
+  }
 }
 
 /*provider registration*/

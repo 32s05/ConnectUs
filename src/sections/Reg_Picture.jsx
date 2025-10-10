@@ -45,9 +45,9 @@ function Picture({ setImageUrl }) {
       <label htmlFor="profilePic" className="upload-box d-flex justify-content-center align-items-center rounded-4 mt-4">
         {preview ? (<img src={preview} alt="Profile Preview" className="preview" />) : ("Upload Picture")}
       </label>
-      <input type="file" required id="profilePic" accept="image/*" onChange={handleImageChange} className="upload-input"/>
+      <input type="file" id="profilePic" accept="image/*" onChange={handleImageChange} className="upload-input"/>
 
-      <h6 className="mt-3 fw-medium">Profile Picture</h6>
+      <h6 className="mt-3 fw-medium mb-5">Profile Picture</h6>
     </div>
   );
 }

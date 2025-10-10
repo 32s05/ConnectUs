@@ -280,11 +280,12 @@ main {
 }
 
 /*registration style*/
-.registration input{
+.registration input, textarea, select{
   width: 100% !important;
   max-width: 750px;
   padding: 10px 10px !important;
   border-radius: 15px;
+  border: 1px solid #ccc;
 }
 
 .upload-box{
@@ -351,29 +352,6 @@ main {
 }
 
 /*provider registration*/
-.registration-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2rem;
-}
-
-.form-grid {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.form-grid.one-column {
-  flex: 1;
-  min-width: 300px;
-}
-
-.form-left {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 .form-group {
   display: flex;
   flex-direction: column;
@@ -385,46 +363,50 @@ main {
   margin-right: 4px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 10px 10px !important;
-  border-radius: 15px;
-}
-
-.form-right {
-  flex: 0.8;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 280px;
-}
-
-.upload-section {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
 .description-section {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
 }
 
-.description-section label {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
+.upload-box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-.description-section textarea {
-  padding: 0.8rem;
-  min-height: 120px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: none;
+.upload-box {
+  width: 250px;
+  height: 250px;
+  border: 2px dashed #6c757d;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.upload-box img.preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-input {
+  display: none;
+}
+
+.upload-box-container h6 {
+  margin-top: 0.75rem;
+  font-weight: 500;
+  text-align: center;
 }
 
 .register-btn {

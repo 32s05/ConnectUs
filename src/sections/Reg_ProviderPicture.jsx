@@ -1,41 +1,99 @@
 import React, { useState } from "react";
 import '../assets/style.css';
 
-function Picture() {
-    const [servicePreview, setServicePreview] = useState(null);
-    const [profilePreview, setProfilePreview] = useState(null);
+function Picture({ setServiceProfileUrl, setUserProfileUrl }) {
+  const [servicePreview, setServicePreview] = useState(null);
+  const [profilePreview, setProfilePreview] = useState(null);
 
-    const handleServiceChange = (e) => {
-        const file = e.target.files[0];
-        if (file) setServicePreview(URL.createObjectURL(file));
-    };
+  const cloudName = "do04thsku";
+  const servicePreset = "Provider_ServicePictures";
+  const profilePreset = "Provider_ProfilePictures";
 
-    const handleProfileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) setProfilePreview(URL.createObjectURL(file));
-    };
+  const uploadToCloudinary = async (file, setImageUrl, preset) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset);
 
-    return (
-        <div className="upload col-md-4 d-flex flex-column align-items-center">
-            <div className="upload-row">
-                <div className="upload-box-container">
-                    <label htmlFor="servicePhoto" className="upload-box d-flex justify-content-center align-items-center rounded-4">
-                        {servicePreview ? (<img src={servicePreview} alt="Service Preview" className="preview"/>) : ("Upload Service Photo")}
-                    </label>
-                    <input type="file" id="servicePhoto" accept="image/*" onChange={handleServiceChange} className="upload-input"/>
-                </div>
+    try {
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: "POST",
+        body: formData
+      });
+      const data = await response.json();
+      if (data.secure_url) {
+        setImageUrl(data.secure_url);
+        console.log("Uploaded image:", data.secure_url);
+      } else {
+        console.error("Upload failed:", data);
+      }
+    } catch (error) {
+      console.error("Cloudinary upload error:", error);
+    }
+  };
 
-                <div className="upload-box-container">
-                    <label htmlFor="profilePhoto" className="upload-box d-flex mt-4 justify-content-center align-items-center rounded-4">
-                        {profilePreview ? (<img src={profilePreview} alt="Profile Preview" className="preview"/>) : ("Upload Profile Photo")}
-                    </label>
-                    <input type="file" id="profilePhoto" accept="image/*" onChange={handleProfileChange} className="upload-input"/>
-                </div>
-            </div>
+  const handleServiceChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setServicePreview(URL.createObjectURL(file));
+      uploadToCloudinary(file, setServiceProfileUrl, servicePreset);
+    }
+  };
 
-            <button type="submit" className="btn">Register</button>
+  const handleProfileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePreview(URL.createObjectURL(file));
+      uploadToCloudinary(file, setUserProfileUrl, profilePreset);
+    }
+  };
+
+  return (
+    <div className="upload col-md-4 d-flex flex-column align-items-center">
+        {/* Service Photo */}
+        <div className="upload-box-container mb-4">
+            <label
+            htmlFor="servicePhoto"
+            className="upload-box d-flex justify-content-center align-items-center rounded-4"
+            >
+            {servicePreview ? (
+                <img src={servicePreview} alt="Service Preview" className="preview" />
+            ) : (
+                "Upload Service Photo"
+            )}
+            </label>
+            <input
+            type="file"
+            id="servicePhoto"
+            accept="image/*"
+            onChange={handleServiceChange}
+            className="upload-input"
+            />
+            <h6 className="mt-3 fw-medium">Service Photo</h6>
         </div>
-    );
+
+        {/* Profile Photo */}
+        <div className="upload-box-container">
+            <label
+            htmlFor="profilePhoto"
+            className="upload-box d-flex justify-content-center align-items-center rounded-4"
+            >
+            {profilePreview ? (
+                <img src={profilePreview} alt="Profile Preview" className="preview" />
+            ) : (
+                "Upload Profile Photo"
+            )}
+            </label>
+            <input
+            type="file"
+            id="profilePhoto"
+            accept="image/*"
+            onChange={handleProfileChange}
+            className="upload-input"
+            />
+            <h6 className="mt-3 fw-medium">Profile Photo</h6>
+        </div>
+    </div>
+  );
 }
 
 export default Picture;

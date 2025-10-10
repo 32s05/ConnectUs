@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../assets/style.css';
 import NavbarComponent from "../components/NavbarComponent";
@@ -15,36 +15,68 @@ const Registration = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const addressRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+
   const sheetdbUrl = "https://sheetdb.io/api/v1/4luko9k4w8st5";
+  const sheetProviders = "https://sheetdb.io/api/v1/m70bz6ndrxxv4";
 
   const handleForms = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !address || !password || !confirmPassword) {
-      setMessage("Please fill in all fields.");
-      return;
-    }
-
-    if (!imageUrl) {
-      setMessage("Please upload a profile picture.");
-      return;
-    }
-
-
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match.");
-      return;
-    }
-
     try {
-      const checkResponse = await fetch(`${sheetdbUrl}/search?email=${email}`);
-      const existingUsers = await checkResponse.json();
+      // check if email exists
+      let checkResponse = await fetch(`${sheetdbUrl}/search?email=${encodeURIComponent(email)}`);
+      const data1 = checkResponse.ok ? await checkResponse.json() : [];
 
-      if (existingUsers.length > 0) {
+      const res2 = await fetch(`${sheetProviders}/search?email=${encodeURIComponent(email)}`);
+      const data2 = res2.ok ? await res2.json() : [];
+
+      if ((data1 && data1.length > 0) || (data2 && data2.length > 0)) {
         setMessage("Email already registered.");
+        emailRef.current?.focus();
         return;
       }
 
+      // input all fields validator
+      if (!name) {
+        setMessage("Please input your name.");
+        nameRef.current.focus();
+        return;
+      }
+
+      if (!email) {
+        setMessage("Please input a valid email.");
+        emailRef.current.focus();
+        return;
+      }
+
+      if (!email.includes("@")) {
+        setMessage("Please input a valid email.");
+        setEmail("");
+        emailRef.current.focus();
+        return;
+      }
+
+      if (!address) {
+        setMessage("Please input your address.");
+        addressRef.current.focus();
+        return;
+      }
+
+      // validate if password and confirm password match
+      if (password !== confirmPassword) {
+        setMessage("Passwords do not match.");
+        passwordRef.current.focus();
+        setPassword("");
+        setConfirmPassword("");
+        return;
+      }
+
+      // creating new user
       const newUser = {
         data: [
           {
@@ -81,17 +113,23 @@ const Registration = () => {
     <div className="body">
       <NavbarComponent />
       <div className="container my-5">
-        <h4 className="fw-bold display-5 mt-5 mb-4">Service-Seeker Registration</h4>
-        <form onSubmit={handleForms}>
+        <h4 className="fw-bold display-5 mt-5 mb-5">Service-Seeker Registration</h4>
+        <form onSubmit={handleForms} noValidate>
           <div className="row ms-1">
-            <Picture setImageUrl={setImageUrl} />
+            <Picture setImageUrl={setImageUrl}/>
             <Forms
               name={name} setName={setName}
-              email={email} setEmail={setEmail}
+              email={email} setEmail= {setEmail}
               address={address} setAddress={setAddress}
               password={password} setPassword={setPassword}
               confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}
               message={message}
+
+              nameRef={nameRef}
+              emailRef={emailRef}
+              addressRef={addressRef}
+              passwordRef={passwordRef}
+              confirmPasswordRef={confirmPasswordRef}
             />
           </div>
           

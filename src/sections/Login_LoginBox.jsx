@@ -42,7 +42,7 @@ function LoginBox({ email, password, setEmail, setPassword, handleSubmit, messag
 
       <div className="text-center mt-4">
         <small>
-          Don’t have an account? <a href="/register">Register</a>
+          Don’t have an account? <a href="/Registration">Register</a>
         </small>
       </div>
     </div>

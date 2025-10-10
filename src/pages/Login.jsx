@@ -13,7 +13,8 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const sheetdbUrl = "https://sheetdb.io/api/v1/4luko9k4w8st5";
+  const sheetCustomer = "https://sheetdb.io/api/v1/4luko9k4w8st5";
+  const sheetProvider = "https://sheetdb.io/api/v1/m70bz6ndrxxv4";
 
   useEffect(() => {
     if (sessionStorage.getItem("loggedInUser")) {
@@ -23,15 +24,33 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const queryUrl = `${sheetdbUrl}/search?email=${email}&password=${password}`;
+
+    const queryCustomer = `${sheetCustomer}/search?email=${email}&password=${password}`;
+    const queryProvider = `${sheetProvider}/search?email=${email}&password=${password}`;
+
     try {
-      const response = await fetch(queryUrl);
-      const data = await response.json();
-      if (Array.isArray(data) && data.length > 0) {
+      // check if email exists in customer sheets
+      const C_response = await fetch(queryCustomer);
+      const dataCustomer = await C_response.json();
+      if (Array.isArray(dataCustomer) && dataCustomer.length > 0) {
         sessionStorage.setItem("loggedInUser", email);
-        navigate("/Dashboard");
-      } else {
+        sessionStorage.setItem("role", "customer");
+        navigate("/CUstomer_Dashboard");
+      } 
+      
+      // check if email exists in provider sheets
+      const P_response = await fetch(queryProvider);
+      const dataProvider = await P_response.json();
+      if (Array.isArray(dataProvider) && dataProvider.length > 0) {
+        sessionStorage.setItem("loggedInUser", email);
+        sessionStorage.setItem("role", "provider");
+        navigate("/Provider_Dashboard");
+      } 
+
+      else {
         setMessage("Invalid credentials.");
+        setEmail("");
+        setPassword("");
       }
     } catch (error) {
       console.error("Login error:", error);

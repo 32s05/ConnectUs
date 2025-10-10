@@ -134,7 +134,7 @@ const Registration = () => {
           </div>
           
           <div className="text-center mt-4">
-            <button type="submit" className="btn-Register">Register</button>
+            <button type="submit" className="register-btn">Register</button>
           </div>
         </form>
       </div>

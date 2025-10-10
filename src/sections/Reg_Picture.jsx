@@ -41,7 +41,7 @@ function Picture({ setImageUrl }) {
   };
 
   return (
-    <div className="upload col-md-4 d-flex flex-column align-items-center">
+    <div className="col-md-4 d-flex flex-column align-items-center">
       <label htmlFor="profilePic" className="upload-box d-flex justify-content-center align-items-center rounded-4 mt-4">
         {preview ? (<img src={preview} alt="Profile Preview" className="preview" />) : ("Upload Picture")}
       </label>

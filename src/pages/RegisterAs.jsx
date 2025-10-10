@@ -6,7 +6,7 @@ import RegAs from "../sections/Reg_As";
 
 const RegisterAs = () => {
   return (
-    <div className="registeras-container">
+    <div className="body">
         <NavbarComponent />
         <RegAs />
     </div>

@@ -38,54 +38,58 @@ const ProviderRegistration = () => {
     setMessage("Please enter your full name.");
     nameRef.current.focus();
     return;
-  }
+    }
 
-  if (!email) {
-    setMessage("Please enter your email.");
-    emailRef.current.focus();
-    return;
-  }
+    if (!email) {
+      setMessage("Please enter your email.");
+      emailRef.current.focus();
+      return;
+    }
 
-  if (!password) {
-    setMessage("Please enter your password.");
-    passwordRef.current.focus();
-    return;
-  }
+    if (!email.includes("@")) {
+      setMessage("Please input a valid email.");
+      setEmail("");
+      emailRef.current.focus();
+      return;
+    }
 
-  if (!confirmPassword) {
-    setMessage("Please confirm your password.");
-    confirmPasswordRef.current.focus();
-    return;
-  }
+    if (!password) {
+      setMessage("Please enter your password.");
+      passwordRef.current.focus();
+      return;
+    }
 
-  if (password !== confirmPassword) {
-    setMessage("Passwords do not match.");
-    confirmPasswordRef.current.focus();
-    return;
-  }
+    if (!confirmPassword) {
+      setMessage("Please confirm your password.");
+      confirmPasswordRef.current.focus();
+      return;
+    }
 
-  if (!service_name) {
-    setServiceMessage("Please enter your service name.");
-    serviceNameRef.current.focus();
-    return;
-  }
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match.");
+      passwordRef.current.focus();
+      setPassword("");
+      setConfirmPassword("");
+      return;
+    }
 
-  if (!category || !location || !operating_hours || !description) {
-    setServiceMessage("Please fill out all service information fields.");
-    return;
-  }
+    if (!service_name) {
+      setServiceMessage("Please enter your service name.");
+      serviceNameRef.current.focus();
+      return;
+    }
 
-    
+    if (!category || !location || !operating_hours || !description) {
+      setServiceMessage("Please fill out all service information fields.");
+      return;
+    }
+
+      
     if (!serviceProfileUrl) {
       setMessage("Please upload a service picture.");
       return;
     }
-    
-    // validate if password and confirm password match
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match.");
-      return;
-    }
+      
 
     try {
       //Check if email exists
@@ -97,6 +101,7 @@ const ProviderRegistration = () => {
 
       if ((data1 && data1.length > 0) || (data2 && data2.length > 0)) {
         setMessage("Email already registered.");
+        setEmail("");
         emailRef.current?.focus();
         return;
       }
@@ -155,7 +160,7 @@ const ProviderRegistration = () => {
       <div className="container my-5">
         <h4 className="fw-bold display-5 mt-5 mb-5">Service-Provider Registration</h4>
         <form onSubmit={ handleForms } noValidate>
-          <div className="row ms-1">
+          <div className="forms row ms-1">
             <Picture
               setServiceProfileUrl={setServiceProfileUrl}
               setUserProfileUrl={setUserProfileUrl}
@@ -184,7 +189,7 @@ const ProviderRegistration = () => {
           </div>
 
           <div className="text-center mt-4">
-            <button type="submit" className="btn-Register">Register</button>
+            <button type="submit" className="register-btn">Register</button>
           </div>
         </form>
       </div>

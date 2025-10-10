@@ -7,6 +7,7 @@ import CustomerRegistration from "./pages/Registration_Customer";
 import ProviderRegistration from "./pages/Registration_Provider";
 import RegisterAs from "./pages/RegisterAs";
 import Dashboard from "./pages/Dashboard";  
+import ServicePage from "./pages/ServicePage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/ProviderRegistration" element={<ProviderRegistration/>} />
         <Route path="/Registration" element={<RegisterAs />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/services" element={<ServicePage />} />
       </Routes>
       <FooterComponent />
     </Router>

@@ -550,187 +550,117 @@ main {
 /* Service Page */
 
 .servicepage-container {
-  display: flex;
-  background-color: #e9eef9;
-  min-height: 60vh;
-  font-family: 'Albert Sans', sans-serif;
+    background-color: #e9eef9;
+    font-family: 'Albert Sans', sans-serif;
 }
 
-.sidebar {
-  width: 250px;
-  background-color: #e9eef9;
-  padding: 20px;
-  border-right: 2px solid #cdd3e1;
-}
-
-.sidebar h3 {
-  color: #243056;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 10px 0;
-  border-bottom: 1px solid #cdd3e1;
-  cursor: pointer;
-  color: #808080;
-}
-
-.main-content {
-  flex: 1;
-  padding: 40px;
-  position: relative;
-}
-
-.service-card {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-}
-
-.profile-pic {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background-color: #d9d9d9;
-  object-fit: cover;
-}
-
-.service-info h2 {
-  color: #1c2952;
-  font-size: 24px;
-  font-weight: 800;
-}
-
-.service-meta {
-  font-style: italic;
-  color: #5a6789;
-}
-
-.description {
-  color: #555;
-  margin-top: 10px;
-}
-
-.book-btn {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  background-color: #1c2952;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 40px;
-  font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.book-btn:hover {
-  background-color: #2e3b65;
-}
-
+/* Inner Section: This is the container that applies the two-column flex layout */
 .servicepage-section {
-  display: flex;
-  background-color: #e8edf7;
-  min-height: 60vh;
-  padding: 20px 40px;
-  font-family: 'Albert Sans', sans-serif;
+    display: flex;
+    padding: 20px /* Padding around the sidebar and main content */
 }
 
+/* Sidebar Styling: Defines the fixed width and separation line */
 .sidebar {
-  width: 220px;
-  border-right: 2px solid #5f6b8a;
-  padding-right: 20px;
+    width: 220px; /* Consistent width */
+    padding-right: 20px;
+    border-right: 2px solid #5f6b8a; /* Clean separator */
+    flex-shrink: 0; /* Ensures sidebar doesn't shrink */
 }
 
-.sidebar-title {
-  color: #5f6b8a;
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+.sidebar-title,
+.sidebar h3, /* Use h3/h4 in the CSS for better specificity */
+.sidebar h4 {
+    color: #5f6b8a;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
 }
 
 .category-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .category-item {
-  color: #444;
-  padding: 10px 0;
-  cursor: pointer;
-  border-bottom: 1px solid #cbd3e1;
-  transition: color 0.3s;
+    color: #444;
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #cbd3e1;
+    transition: color 0.3s;
 }
 
 .category-item:hover,
 .category-item.active {
-  color: #192338;
-  font-weight: 600;
+    color: #192338;
+    font-weight: 600;
 }
 
+/* Main Content: Takes up the remaining space */
 .main-content {
-  flex: 1;
-  padding-left: 40px;
-  display: flex;
-  justify-content: flex-start;
+    flex: 1; /* Takes all available remaining space */
+    padding-left: 40px;
+    /* Ensure no residual 'display: flex' that conflicts with the service profile */
 }
 
+/* Single Service Profile (The large card) */
 .service-profile {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
+    /* CRUCIAL FIX: Ensure content inside is horizontal (image and info) */
+    display: flex; 
+    align-items: flex-start;
+    gap: 40px; /* Spacing between image and text */
+    /* Add padding/background if you want a box around the whole profile */
 }
 
-.service-image {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background-color: #ccc;
+.service-image { /* Matches .profile-pic and .service-image definitions */
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #ccc;
+    flex-shrink: 0;
 }
 
 .service-info {
-  flex: 1;
+    flex: 1;
 }
 
 .service-name {
-  font-weight: 700;
-  color: #212e4e;
-  margin-bottom: 10px;
+    font-weight: 700;
+    color: #212e4e;
+    font-size: 24px; /* Set a consistent size */
+    margin-bottom: 10px;
 }
 
 .service-meta {
-  color: #666;
-  font-style: italic;
-  margin-bottom: 8px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 8px;
 }
 
 .service-contact,
 .service-description {
-  color: #555;
-  margin-bottom: 10px;
+    color: #555;
+    margin-bottom: 15px;
 }
 
+/* Book Button: Static positioning is much safer */
 .book-btn {
-  background-color: #1b2a4a;
-  color: white;
-  font-weight: 600;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    /* Removed absolute positioning */
+    background-color: #1b2a4a;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* Add margin to position it below the description */
+    margin-top: 10px;
 }
 
 .book-btn:hover {
-  background-color: #1b2336;
+    background-color: #1b2336;
 }
 
 /*Dashboard real na talaga*/

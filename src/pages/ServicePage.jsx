@@ -5,7 +5,7 @@ import ServicePageSection from "../sections/ServicePage_Section";
 
 const ServicePage = () => {
   return (
-    <div className="servicepage-container">
+    <div className="dashboard-page"> 
       <Navbar2 />
       <ServicePageSection />
     </div>

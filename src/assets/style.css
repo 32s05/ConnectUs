@@ -200,7 +200,6 @@ main {
 }
 
 /*login-box style*/
-
 .login-box{
   background-color: #c8d1df !important;
   width:25rem;
@@ -252,20 +251,24 @@ main {
 }
 
 /*registration style*/
-.registration input{
-  width: 750px !important;
+.registration input, select, textarea{
+  width: 100% !important;
   padding: 10px 10px !important;
   border-radius: 15px;
+  border: 1px solid #ccc;
 }
 
 .upload-box{
-  width: 250px;
-  height: 250px;
+  width:75%;               
+  aspect-ratio: 1 / 1;      
   cursor: pointer;
   overflow: hidden;
   border: 2px dashed #6c757d;
   color: black;
   background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .upload-box:hover {
@@ -283,48 +286,11 @@ main {
   display: none;
 }
 
-.upload button{
-  width: 40%;
-  padding: 10px;
-  margin-top: 75px !important;
-  background-color: #192338;
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: 20px;
-  font-size: 20px;
-  cursor: pointer;
-  display: block;      
-  margin: 0 auto;   
-}
-
-.upload button:hover{
-  background-color: #353f50;
-  color: white;
-}
-
 /*provider registration*/
 .registration-container {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 2rem;
-}
-
-.form-grid {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.form-grid.one-column {
-  flex: 1;
-  min-width: 300px;
-}
-
-.form-left {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 }
 
 .form-group {
@@ -338,51 +304,9 @@ main {
   margin-right: 4px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 10px 10px !important;
-  border-radius: 15px;
-}
-
-.form-right {
-  flex: 0.8;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 280px;
-}
-
-.upload-section {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.description-section {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-}
-
-.description-section label {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-
-.description-section textarea {
-  padding: 0.8rem;
-  min-height: 120px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: none;
-}
-
 .register-btn {
-  width: 40%;
-  padding: 10px;
+  width: auto;
+  padding: 10px 30px;
   margin-top: 25px !important;
   background-color: #192338;
   color: white;
@@ -398,6 +322,55 @@ main {
 .register-btn:hover {
   background-color: #353f50;
   color: white;
+}
+
+.upload2-box{
+  width: 250px;
+  height: 250px;
+  border: 2px dashed gray;
+  border-radius: 15px;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  margin: 0 auto;
+}
+
+.upload2-box:hover {
+  border-color: #353f50;
+  color: #353f50;
+}
+
+@media (max-width: 768px) {
+  .upload2-box {
+    width: 200px;
+    height: 200px;
+    aspect-ratio: 1/1 !important;
+  }
+
+  .upload-box-container h6 {
+    font-size: 0.9rem;
+  }
+
+  .forms{
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .upload2-box {
+    width: 100%;
+    aspect-ratio: 1/1 !important;
+  }
+
+  .upload-box-container h6 {
+    font-size: 0.9rem;
+  }
+
+  .forms{
+    margin-left: 0px;
+  }
 }
 
 /*Register As*/

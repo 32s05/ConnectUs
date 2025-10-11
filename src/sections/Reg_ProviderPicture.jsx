@@ -50,47 +50,21 @@ function Picture({ setServiceProfileUrl, setUserProfileUrl }) {
   return (
     <div className="upload col-md-4 d-flex flex-column align-items-center">
         {/* Service Photo */}
-        <div className="upload-box-container mb-4">
-            <label
-            htmlFor="servicePhoto"
-            className="upload-box d-flex justify-content-center align-items-center rounded-4"
-            >
-            {servicePreview ? (
-                <img src={servicePreview} alt="Service Preview" className="preview" />
-            ) : (
-                "Upload Service Photo"
-            )}
+        <div className="upload-box-container mb-4 text-center">
+            <label htmlFor="servicePhoto" className="upload2-box rounded-4">
+            {servicePreview ? (<img src={servicePreview} alt="Service Preview" className="preview" />) : ("Upload Service Photo")}
             </label>
-            <input
-            type="file"
-            id="servicePhoto"
-            accept="image/*"
-            onChange={handleServiceChange}
-            className="upload-input"
-            />
-            <h6 className="mt-3 fw-medium">Service Photo</h6>
+            <input type="file" id="servicePhoto" accept="image/*" onChange={handleServiceChange} className="upload-input"/>
+            <h6 className="mt-2 fw-medium">Service Photo</h6>
         </div>
 
         {/* Profile Photo */}
-        <div className="upload-box-container">
-            <label
-            htmlFor="profilePhoto"
-            className="upload-box d-flex justify-content-center align-items-center rounded-4"
-            >
-            {profilePreview ? (
-                <img src={profilePreview} alt="Profile Preview" className="preview" />
-            ) : (
-                "Upload Profile Photo"
-            )}
+        <div className="upload-box-container text-center">
+            <label htmlFor="profilePhoto" className="upload2-box rounded-4">
+            {profilePreview ? (<img src={profilePreview} alt="Profile Preview" className="preview" />) : ("Upload Profile Photo")}
             </label>
-            <input
-            type="file"
-            id="profilePhoto"
-            accept="image/*"
-            onChange={handleProfileChange}
-            className="upload-input"
-            />
-            <h6 className="mt-3 fw-medium">Profile Photo</h6>
+            <input type="file" id="profilePhoto" accept="image/*" onChange={handleProfileChange} className="upload-input"/>
+            <h6 className="mt-2 mb-5 fw-medium">Profile Photo</h6>
         </div>
     </div>
   );

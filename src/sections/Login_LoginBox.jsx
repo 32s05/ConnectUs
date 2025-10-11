@@ -34,11 +34,13 @@ function LoginBox({ email, password, setEmail, setPassword, handleSubmit, messag
           />
         </div>
 
-        <button type="submit" className="btn mt-4">Login</button>
+        {/* display message if login fails */}
+        {message && <p className="text-danger text-center mt-3">{message}</p>}
+
+        <button type="submit" className="btn mt-3">Login</button>
       </form>
 
-      {/* ✅ Display message if login fails */}
-      {message && <p className="text-danger text-center mt-3">{message}</p>}
+      
 
       <div className="text-center mt-4">
         <small>

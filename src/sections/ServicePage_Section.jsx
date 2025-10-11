@@ -1,5 +1,5 @@
-import React from "react"; // Removed useState
-import { Link } from "react-router-dom"; // 👈 Import Link
+import React from "react"; 
+import { Link } from "react-router-dom";
 import "../assets/style.css";
 
 const ServicePageSection = () => {

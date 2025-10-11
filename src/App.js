@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import FooterComponent from "./components/FooterComponent";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,10 +12,14 @@ import ProviderDashboard from "./pages/Dashboard_Provider";
 import ServicePage from "./pages/ServicePage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
+      <main>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
@@ -24,11 +29,13 @@ function App() {
 
         {/* Customer Paths */}
         <Route path="/Customer_Dashboard" element={<Dashboard />} />
+        <Route path="/services" element={<ServicePage />} />
 
         {/* Provider Paths */}
         <Route path="/Provider_Dashboard" element={<ProviderDashboard />} />
-        <Route path="/services" element={<ServicePage />} />
+        
       </Routes>
+      </main>
       <FooterComponent />
     </Router>
   );

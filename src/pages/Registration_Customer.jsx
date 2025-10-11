@@ -80,6 +80,7 @@ const Registration = () => {
       const newUser = {
         data: [
           {
+            id: "CUST" + Date.now(),
             name: name,
             email: email,
             address: address,

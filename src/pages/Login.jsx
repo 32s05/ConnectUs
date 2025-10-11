@@ -35,7 +35,8 @@ const Login = () => {
       if (Array.isArray(dataCustomer) && dataCustomer.length > 0) {
         sessionStorage.setItem("loggedInUser", email);
         sessionStorage.setItem("role", "customer");
-        navigate("/CUstomer_Dashboard");
+        localStorage.setItem("customerId", dataCustomer[0].id);
+        navigate("/Customer_Dashboard");
       } 
       
       // check if email exists in provider sheets
@@ -44,6 +45,7 @@ const Login = () => {
       if (Array.isArray(dataProvider) && dataProvider.length > 0) {
         sessionStorage.setItem("loggedInUser", email);
         sessionStorage.setItem("role", "provider");
+        localStorage.setItem("providerId", dataProvider[0].id);
         navigate("/Provider_Dashboard");
       } 
 

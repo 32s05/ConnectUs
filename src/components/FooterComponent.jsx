@@ -3,7 +3,7 @@ import '../assets/style.css'
 
 function FooterComponent() {
   return (
-    <footer className="footer text-center mt-5">
+    <footer className="footer text-center">
       {/* Social media */}
       <section className="d-flex justify-content-center justify-content-lg-between p-0 border-bottom">
         <div>

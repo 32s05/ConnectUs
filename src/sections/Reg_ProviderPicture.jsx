@@ -55,7 +55,7 @@ function Picture({ setServiceProfileUrl, setUserProfileUrl }) {
             {servicePreview ? (<img src={servicePreview} alt="Service Preview" className="preview" />) : ("Upload Service Photo")}
             </label>
             <input type="file" id="servicePhoto" accept="image/*" onChange={handleServiceChange} className="upload-input"/>
-            <h6 className="mt-2 fw-medium">Service Photo</h6>
+            <h6 className="mt-2 fw-medium"><span className="required">*</span> Service Photo</h6>
         </div>
 
         {/* Profile Photo */}

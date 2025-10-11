@@ -13,7 +13,8 @@ const ProviderRegistration = () => {
   const [service_name, setServiceName] = useState('');
   const [category, setCategory] = useState('');
   const [location, setLocation] = useState('');
-  const [operating_hours, setOperatingHours] = useState('');
+  const [openingTime, setOpeningTime] = useState('');
+  const [closingTime, setClosingTime] = useState('');
   const [description, setDescription] = useState('');
   const [userProfileUrl, setUserProfileUrl] = useState();
   const [serviceProfileUrl, setServiceProfileUrl] = useState();
@@ -79,7 +80,7 @@ const ProviderRegistration = () => {
       return;
     }
 
-    if (!category || !location || !operating_hours || !description) {
+    if (!category || !location || !openingTime || !closingTime || !description) {
       setServiceMessage("Please fill out all service information fields.");
       return;
     }
@@ -119,16 +120,18 @@ const ProviderRegistration = () => {
       const newUser = {
         data: [
           {
-            "name": name,
-            "email": email,
-            "password": password,
-            "service_name": service_name,
-            "category": category,
-            "location": location,
-            "operating_hours": operating_hours,
-            "description": description,
-            "userProfileUrl": userProfileUrl || "No picture uploaded",
-            "serviceProfileUrl": serviceProfileUrl || "No picture uploaded",
+            id: "PROV" + Date.now(),
+            name: name,
+            email: email,
+            password: password,
+            service_name: service_name,
+            category: category,
+            location: location,
+            openingTime: openingTime,
+            closingTime: closingTime,
+            description: description,
+            userProfileUrl: userProfileUrl || "No picture uploaded",
+            serviceProfileUrl: serviceProfileUrl || "No picture uploaded",
           }
         ]
       };
@@ -174,7 +177,8 @@ const ProviderRegistration = () => {
               service_name={service_name} setServiceName={setServiceName}
               category={category} setCategory={setCategory}
               location={location} setLocation={setLocation}
-              operating_hours={operating_hours} setOperatingHours={setOperatingHours}
+              openingTime={openingTime} setOpeningTime={setOpeningTime}
+              closingTime={closingTime} setClosingTime={setClosingTime}
               description={description} setDescription={setDescription}
 
               message={message} setMessage={setMessage}

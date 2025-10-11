@@ -2,12 +2,15 @@
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 main {
@@ -15,9 +18,16 @@ main {
 }
 
 .body{
-    font-family: 'Albert Sans', sans-serif;
-    padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  font-family: 'Albert Sans', sans-serif;
 }
+
+footer {
+  margin-top: auto;
+}
+
 .navbar{
     background-color: #192338 !important;
     font-family: 'Albert Sans', sans-serif;
@@ -32,7 +42,6 @@ main {
     font-size: 13px;
     letter-spacing: 1px;
 }
-
 /*hero style*/
 .badgeTop{
   background-color: #8FB3E2 !important;
@@ -415,11 +424,28 @@ main {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  width: 100%;          
+  max-width: 350px;      
 }
 
 .registeras-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 992px) {
+  .registeras-btn {
+    padding: 40px 70px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .registeras-btn {
+    padding: 25px 45px;
+    font-size: 1rem;
+    border-radius: 20px;
+  }
 }
 
 .registeras-top {
@@ -739,3 +765,19 @@ main {
 .view-more-btn:hover {
   background-color: #1565c0;
 }
+
+/* provider dashboard */
+.service-name{
+  font-weight: 900;
+  color: #1f2b4a;
+  font-size: 6rem;
+}
+
+.underline {
+  width: 80px;
+  height: 4px;
+  background-color: #192338;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+

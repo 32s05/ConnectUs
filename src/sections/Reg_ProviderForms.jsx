@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/style.css";
 
 function Forms({ name, setName, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword,
-    service_name, setServiceName, category, setCategory, location, setLocation, operating_hours, setOperatingHours, 
+    service_name, setServiceName, category, setCategory, location, setLocation, openingTime, setOpeningTime, closingTime, setClosingTime, 
     description, setDescription, message, serviceMessage, nameRef, emailRef, passwordRef, confirmPasswordRef, serviceNameRef
  }) {
   return (
@@ -63,8 +63,14 @@ function Forms({ name, setName, email, setEmail, password, setPassword, confirmP
             </div>
 
             <div className="form-group">
-                <label className="form-label"><span className="required">*</span> Operating Hours</label>
-                <input type="text" placeholder="e.g. 9 AM - 6 PM" required value={operating_hours} onChange={(e) => setOperatingHours(e.target.value)}/>
+                <label className="form-label">
+                    <span className="required">*</span> Operating Hours
+                </label>
+                <div className="d-flex gap-2">
+                    <input type="time" required value={openingTime} onChange={(e) => setOpeningTime(e.target.value)}/>
+                    <span>to</span>
+                    <input type="time" required value={closingTime} onChange={(e) => setClosingTime(e.target.value)}/>
+                </div>
             </div>
 
             <div className="form-group">

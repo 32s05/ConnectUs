@@ -486,40 +486,174 @@ footer {
 
 /*Navbar2*/ 
 
+/* NAVBAR container */
+/* NAVBAR */
 .navbar2 {
-  background-color: #1f2b4a; 
-  font-family: 'Albert Sans', sans-serif;
-  height: 70px;
+    position: fixed;
+    background-color: #192338 !important;
+    height: 70px;
+    width: 100%;
+    top: 0;
+    z-index: 1100;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Search bar container */
+.navbar-toggler {
+    border: none;
+    background: transparent;
+}
+
+.profile-pic,
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+}
+
+/* --- Search Bar Styles --- */
 .search-bar {
-  border: 1px solid #ffffff;
-  border-radius: 50px;
-  height: 38px;
-  width: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 50px;
+    height: 38px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 15px;
+    padding: 0 5px 0 15px; /* Internal padding for good spacing */
 }
 
 .search-input {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #ffffff;
-  width: 100%;
-  font-size: 14px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    width: 100%;
+    font-size: 14px;
+    flex-grow: 1; /* Allow input to take remaining space */
 }
 
 .search-input::placeholder {
-  color: #d0d6e2;
+    color: #d0d6e2;
 }
 
 .search-icon {
-  color: #ffffff;
+    color: #ffffff;
+    padding-left: 5px; 
 }
+
+/* Divider between search and profile */
+.divider {
+    width: 1px;
+    height: 30px;
+    background-color: #ffffff;
+    margin-right: 15px;
+}
+
+/* CUSTOMER SIDEBAR (c-sidebar) STYLES */
+.c-sidebar {
+    position: fixed;
+    top: 70px;
+    right: 0; 
+    height: 100%;
+    width: 260px;
+    background-color: #192338 !important;
+    color: white;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+    z-index: 1200;
+    padding: 1.5rem;
+}
+
+.c-sidebar.open {
+    transform: translateX(0);
+}
+
+.c-sidebar-header {
+    text-align: left;
+    margin-top: 60px;
+}
+
+.c-sidebar-profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+}
+
+.c-sidebar-nameCon{
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 8px;
+}
+
+.c-sidebar-name {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.c-sidebar-detail {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+.c-sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.c-sidebar-menu li {
+    margin-bottom: 1rem;
+}
+
+.c-sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.c-sidebar-menu a:hover {
+    text-decoration: none;
+    color: #73bbee;
+}
+
+.c-sidebar hr {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.logout{
+    color:#cedbf3 !important;
+    cursor: pointer;
+    font-weight: 600 !important;
+}
+
+.logout:hover{
+    color:#73bbee !important;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1150;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .search-bar {
+        display: none !important; 
+    }
+}
+
 
 /* Divider between search and profile */
 .divider {
@@ -798,7 +932,9 @@ footer {
   border-radius: 2px;
 }
 
-/* NAVBAR */
+/*Navbar2*/
+
+/* NAVBAR container */
 .navbar2 {
   position: fixed;
   background-color: #192338 !important;
@@ -813,15 +949,12 @@ footer {
   background: transparent;
 }
 
-@media (max-width: 768px) {
-  .search-bar {
-    display: none;
-  }
-
-  .profile-pic {
-    width: 40px;
-    height: 40px;
-  }
+.profile-pic,
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
 }
 
 .navbar2 .search-bar {
@@ -848,12 +981,123 @@ footer {
   margin: 0 15px;
 }
 
-.profile-pic,
-.profile-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+@media (max-width: 768px) {
+  .search-bar {
+    display: none; 
+  }
+
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
+/* Sidebar Container */
+.c-sidebar {
+  position: fixed;
+  top: 70px; 
+  right: 0; 
+  height: 100%;
+  width: 260px;
+  background-color: #192338 !important;
   color: white;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+  z-index: 1200; 
+  padding: 1.5rem;
+}
+
+.c-sidebar.open {
+  transform: translateX(0); /* Slides into view */
+}
+
+/* Sidebar Header */
+.c-sidebar-header {
+  text-align: left;
+  margin-top: 60px;
+}
+
+.c-sidebar-profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+}
+
+.c-sidebar-nameCon{
+  display: flex;
+  gap: 8px;
+}
+
+.c-sidebar-name {
+  font-weight: 600;
+}
+
+.edit-icon {
+  margin-top: 5px;
+  color: #aaa;
+  transition: color 0.2s ease;
+  font-size: 12px;
+}
+
+.edit-icon:hover {
+  color: #fff;
+}
+
+.c-sidebar-detail {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Sidebar Menu */
+.c-sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.c-sidebar-menu li {
+  margin-bottom: 1rem;
+}
+
+.c-sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.c-sidebar-menu a:hover {
+  text-decoration: none;
+  color: #73bbee;
+}
+
+.c-sidebar hr {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.logout{
+  color:#cedbf3 !important;
+  cursor: pointer;
+  font-weight: 600 !important;
+}
+
+.logout:hover{
+  color:#73bbee !important;
+  cursor: pointer;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1150;
 }
 
 /* provider navbar */

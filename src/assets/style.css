@@ -10,7 +10,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  min-height: 100vh;
 }
 
 main {
@@ -20,7 +20,6 @@ main {
 .body{
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
   font-family: 'Albert Sans', sans-serif;
 }
 
@@ -29,8 +28,13 @@ footer {
 }
 
 .navbar{
-    background-color: #192338 !important;
-    font-family: 'Albert Sans', sans-serif;
+  background-color: #192338 !important;
+  font-family: 'Albert Sans', sans-serif;
+}
+
+.navbar-toggler{
+  outline: none;
+  border: none;
 }
 
 .footer{             
@@ -371,6 +375,7 @@ footer {
   .upload2-box {
     width: 100%;
     aspect-ratio: 1/1 !important;
+    object-fit: cover;
   }
 
   .upload-box-container h6 {
@@ -767,10 +772,23 @@ footer {
 }
 
 /* provider dashboard */
-.service-name{
-  font-weight: 900;
-  color: #1f2b4a;
-  font-size: 6rem;
+.dashboard {
+  max-width: 1200px;       
+  margin: 0 auto;          
+  padding: 40px 20px;      
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  gap: 20px;               
+}
+
+.serviceNameDash {
+  color: #192338; 
+  font-weight: 1000;         
+}
+
+.dash{
+  font-weight: 600;
 }
 
 .underline {
@@ -778,6 +796,205 @@ footer {
   height: 4px;
   background-color: #192338;
   border-radius: 2px;
-  margin-bottom: 1.5rem;
 }
+
+/* NAVBAR */
+.navbar2 {
+  position: fixed;
+  background-color: #192338 !important;
+  height: 70px;
+  width: 100%;
+  top: 0;
+  z-index: 1100;
+}
+
+.navbar-toggler {
+  border: none;
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    display: none;
+  }
+
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.navbar2 .search-bar {
+  background: white;
+  border-radius: 25px;
+  height: 36px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 150px;
+  font-size: 14px;
+}
+
+.search-icon {
+  color: #192338;
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 0 15px;
+}
+
+.profile-pic,
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+}
+
+/* provider navbar */
+.p-sidebar {
+  position: fixed;
+  top: 70px;
+  right: 0; /* slides from right */
+  height: 100%;
+  width: 260px;
+  background-color: #192338 !important;
+  color: white;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+  z-index: 1200;
+  padding: 1.5rem;
+}
+
+.p-sidebar.open {
+  transform: translateX(0);
+}
+
+/* header */
+.p-sidebar-header {
+  text-align: left;
+  margin-top: 60px;
+}
+
+.p-sidebar-profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+}
+
+.p-sidebar-nameCon{
+  display: flex;
+  gap: 8px;
+}
+
+.p-sidebar-name {
+  font-weight: 600;
+}
+
+.edit-icon {
+  margin-top: 5px;
+  color: #aaa;
+  transition: color 0.2s ease;
+  font-size: 12px;
+}
+
+.edit-icon:hover {
+  color: #fff;
+}
+
+.p-sidebar-service {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* sidebar menu */
+.p-sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.p-sidebar-menu li {
+  margin-bottom: 1rem;
+}
+
+.p-sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.p-sidebar-menu a:hover {
+  text-decoration: none;
+  color: #73bbee;
+}
+
+.p-sidebar hr {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.logout{
+  color:#cedbf3 !important;
+  cursor: pointer;
+  font-weight: 600 !important;
+}
+
+.logout:hover{
+  color:#73bbee !important;
+  cursor: pointer;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1150;
+}
+
+/* edit service */
+.upload3-box{
+  width: 25%;               
+  aspect-ratio: 1 / 1;      
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px dashed #6c757d;
+  color: black;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload3-box:hover {
+  border-color: #353f50;
+  color: #353f50;
+}
+
+@media (max-width: 768px) {
+  .upload3-box{
+    width: 30%;               
+    aspect-ratio: 1 / 1;
+  }
+}
+@media (max-width: 576px) {
+  .upload3-box{
+    width: 50%;               
+    aspect-ratio: 1 / 1;
+  }
+}
+
+
+
 

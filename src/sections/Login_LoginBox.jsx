@@ -3,7 +3,7 @@ import '../assets/style.css';
 
 function LoginBox({ email, password, setEmail, setPassword, handleSubmit, message }) {
   return (
-    <div className="login-box card shadow">
+    <div className="login-box card shadow mb-5">
       <h3 className="text-center mb-4 fw-bold">Login</h3>
 
 

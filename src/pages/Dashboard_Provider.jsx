@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/style.css';
-import NavbarComponent from '../components/Navbar2';
+import NavbarComponent from '../components/Navbar_Provider';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../firebaseconfig";
 
 const ProviderDashboard = () => {
   const [provider, setProvider] = useState(null);
-  const providerEmail = sessionStorage.getItem("loggedInUser");
-  const sheetProviders = "https://sheetdb.io/api/v1/m70bz6ndrxxv4";
 
   useEffect(() => {
     const fetchProviderData = async () => {
       try {
-        const res = await fetch(`${sheetProviders}/search?email=${encodeURIComponent(providerEmail)}`);
-        const data = await res.json();
-        if (data.length > 0) {
-          setProvider(data[0]);
+        const providerEmail = sessionStorage.getItem("loggedInUser");
+        if (!providerEmail) return;
+
+        const providerRef = collection(db, "providers");
+        const q = query(providerRef, where("email", "==", providerEmail));
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+          const providerData = snapshot.docs[0].data();
+          setProvider(providerData);
+          sessionStorage.setItem("providerData", JSON.stringify(providerData));
         }
       } catch (error) {
         console.error("Error fetching provider data:", error);
       }
     };
 
-    const savedProvider = sessionStorage.getItem("providerData");
-    if (savedProvider) {
-      setProvider(JSON.parse(savedProvider));
-    } else {
-      fetchProviderData();
-    }
-  }, [providerEmail]);
+    fetchProviderData();
+    
+  }, []);
 
   return (
     <div className='body'> 
@@ -34,10 +37,9 @@ const ProviderDashboard = () => {
       <div className="registeras-container">
         {provider ? (
           <>
-            <h4 className="display-3 mb-5 my-5 mx-5">
-              <span className='service-name'>{provider.service_name}</span> <span className='fw-bold'>Dashboard</span>
+            <h4 className="display-3 my-5 mx-5">
+              <span className="serviceNameDash">{provider.service_name}</span> <span className="dash">Dashboard</span>
             </h4>
-            <div className="underline" />
           </>
         ) : (
           <p>Loading dashboard...</p>

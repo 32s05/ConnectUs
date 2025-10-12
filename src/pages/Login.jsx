@@ -1,20 +1,18 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { collection, query, where, getDocs} from "firebase/firestore";
+import { db } from "../firebaseconfig";
 import '../assets/style.css';
 import NavbarComponent from "../components/NavbarComponent";
 import LoginBox from "../sections/Login_LoginBox";
 import Logo from "../sections/Login_Logo";
-import React, { useState, useEffect } from 'react';
-
 
 const Login = () => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const sheetCustomer = "https://sheetdb.io/api/v1/4luko9k4w8st5";
-  const sheetProvider = "https://sheetdb.io/api/v1/m70bz6ndrxxv4";
 
   useEffect(() => {
     if (sessionStorage.getItem("loggedInUser")) {
@@ -25,35 +23,39 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const queryCustomer = `${sheetCustomer}/search?email=${email}&password=${password}`;
-    const queryProvider = `${sheetProvider}/search?email=${email}&password=${password}`;
-
     try {
       // check if email exists in customer sheets
-      const C_response = await fetch(queryCustomer);
-      const dataCustomer = await C_response.json();
-      if (Array.isArray(dataCustomer) && dataCustomer.length > 0) {
+      const customerRef = collection(db, "customers");
+      const qCustomer = query(customerRef, where("email", "==", email), where("password", "==", password));
+      const customersSnapshot = await getDocs(qCustomer);
+
+      if (!customersSnapshot.empty) {
+        const dataCustomer = customersSnapshot.docs[0].data();
         sessionStorage.setItem("loggedInUser", email);
         sessionStorage.setItem("role", "customer");
-        localStorage.setItem("customerId", dataCustomer[0].id);
+        localStorage.setItem("customerId", dataCustomer.id);
         navigate("/Customer_Dashboard");
+        return;
       } 
       
       // check if email exists in provider sheets
-      const P_response = await fetch(queryProvider);
-      const dataProvider = await P_response.json();
-      if (Array.isArray(dataProvider) && dataProvider.length > 0) {
+      const providerRef = collection(db, "providers");
+      const qProvider = query(providerRef, where("email", "==", email), where("password", "==", password));
+      const providersSnapshot = await getDocs(qProvider);
+
+      if (!providersSnapshot.empty) {
+        const dataProvider = providersSnapshot.docs[0].data();
         sessionStorage.setItem("loggedInUser", email);
         sessionStorage.setItem("role", "provider");
-        localStorage.setItem("providerId", dataProvider[0].id);
+        localStorage.setItem("providerId", dataProvider.id);
         navigate("/Provider_Dashboard");
+        return;
       } 
 
-      else {
-        setMessage("Invalid credentials.");
-        setEmail("");
-        setPassword("");
-      }
+      setMessage("Invalid credentials.");
+      setEmail("");
+      setPassword("");
+
     } catch (error) {
       console.error("Login error:", error);
       setMessage("Something went wrong. Please try again.");

@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../firebaseconfig";
 import "../assets/style.css";
 import NavbarComponent from "../components/NavbarComponent";
 import Forms from "../sections/Reg_ProviderForms";
@@ -27,9 +29,6 @@ const ProviderRegistration = () => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const serviceNameRef = useRef();
-
-  const sheetdbUrl = "https://sheetdb.io/api/v1/m70bz6ndrxxv4";
-  const sheetCustomers = "https://sheetdb.io/api/v1/4luko9k4w8st5";
 
   const handleForms = async (e) => {
     e.preventDefault();
@@ -93,64 +92,53 @@ const ProviderRegistration = () => {
       
 
     try {
-      //Check if email exists
-      let checkResponse = await fetch(`${sheetdbUrl}/search?email=${encodeURIComponent(email)}`);
-      const data1 = checkResponse.ok ? await checkResponse.json() : [];
+      // check if email exists
+      const customerRef = collection(db, "customers");
+      const providerRef = collection(db, "providers");
 
-      const res2 = await fetch(`${sheetCustomers}/search?email=${encodeURIComponent(email)}`);
-      const data2 = res2.ok ? await res2.json() : [];
-
-      if ((data1 && data1.length > 0) || (data2 && data2.length > 0)) {
+      const qCustomers = query(customerRef, where("email", "==", email));
+      const qProviders = query(providerRef, where("email", "==", email))
+      
+      const [customersSnapshot, providersSnapshot ] = await Promise.all([
+        getDocs(qCustomers),
+        getDocs(qProviders)
+      ])
+      
+      if (!customersSnapshot.empty || !providersSnapshot.empty) {
         setMessage("Email already registered.");
-        setEmail("");
-        emailRef.current?.focus();
+        emailRef.current.focus();
         return;
       }
 
-      //Check if service name exists
-      checkResponse = await fetch(`${sheetdbUrl}/search?service_name=${encodeURIComponent(service_name)}`);
-      let serviceCheck = await checkResponse.json();
+      // check if service name exists
+      const qServiceName = query(providerRef, where("service_name", "==", service_name))
 
-      if (serviceCheck.length > 0) {
+      const serviceSnapshot = await getDocs(qServiceName);
+      
+      if (!serviceSnapshot.empty) {
         setServiceMessage("Service Name is already registered.");
         serviceNameRef.current.focus();
         return;
       }
 
-      const newUser = {
-        data: [
-          {
-            id: "PROV" + Date.now(),
-            name: name,
-            email: email,
-            password: password,
-            service_name: service_name,
-            category: category,
-            location: location,
-            openingTime: openingTime,
-            closingTime: closingTime,
-            description: description,
-            userProfileUrl: userProfileUrl || "No picture uploaded",
-            serviceProfileUrl: serviceProfileUrl || "No picture uploaded",
-          }
-        ]
-      };
-
-      console.log("Sending to SheetDB:", JSON.stringify(newUser, null, 2));
-      const addResponse = await fetch(sheetdbUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newUser)
+      await addDoc(providerRef, {
+        id: "PROV" + Date.now(),
+        name,
+        email,
+        password,
+        service_name,
+        category,
+        location,
+        openingTime,
+        closingTime,
+        description,
+        userProfileUrl: userProfileUrl || "No picture uploaded",
+        serviceProfileUrl: serviceProfileUrl || "No picture uploaded",
       });
 
-      if (addResponse.ok) {
         setMessage("Registration successful! Redirecting to login...");
         setTimeout(() => navigate("/Login"), 2000);
-      } else {
-        setMessage("Registration failed. Please try again.");
-      }
+
     } catch (error) {
       console.error("Registration error:", error);
       setMessage("Something went wrong.");

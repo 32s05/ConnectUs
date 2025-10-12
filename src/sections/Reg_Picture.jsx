@@ -28,12 +28,8 @@ function Picture({ setImageUrl }) {
       );
 
       const data = await response.json();
-      console.log("Cloudinary response:", data);
       if (data.secure_url) {
         setImageUrl(data.secure_url);
-        console.log("Uploaded image:", data.secure_url);
-      } else {
-        console.error("Picture upload failed:", data);
       }
     } catch (error) {
       console.error("Picture upload error:", error);

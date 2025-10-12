@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../firebaseconfig";
 import '../assets/style.css';
 import NavbarComponent from "../components/NavbarComponent";
 import Forms from "../sections/Reg_Forms";
@@ -21,23 +23,25 @@ const Registration = () => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
-  const sheetdbUrl = "https://sheetdb.io/api/v1/4luko9k4w8st5";
-  const sheetProviders = "https://sheetdb.io/api/v1/m70bz6ndrxxv4";
-
   const handleForms = async (e) => {
     e.preventDefault();
 
     try {
       // check if email exists
-      let checkResponse = await fetch(`${sheetdbUrl}/search?email=${encodeURIComponent(email)}`);
-      const data1 = checkResponse.ok ? await checkResponse.json() : [];
+      const customerRef = collection(db, "customers");
+      const providerRef = collection(db, "providers");
 
-      const res2 = await fetch(`${sheetProviders}/search?email=${encodeURIComponent(email)}`);
-      const data2 = res2.ok ? await res2.json() : [];
-
-      if ((data1 && data1.length > 0) || (data2 && data2.length > 0)) {
+      const qCustomers = query(customerRef, where("email", "==", email));
+      const qProviders = query(providerRef, where("email", "==", email))
+      
+      const [customersSnapshot, providersSnapshot ] = await Promise.all([
+        getDocs(qCustomers),
+        getDocs(qProviders)
+      ])
+      
+      if (!customersSnapshot.empty || !providersSnapshot.empty) {
         setMessage("Email already registered.");
-        emailRef.current?.focus();
+        emailRef.current.focus();
         return;
       }
 
@@ -77,33 +81,19 @@ const Registration = () => {
       }
 
       // creating new user
-      const newUser = {
-        data: [
-          {
+      await addDoc(customerRef, {
             id: "CUST" + Date.now(),
             name: name,
             email: email,
             address: address,
             password: password,
             picture: imageUrl || "No picture uploaded",
-          }
-        ]
-      };
-
-      const addResponse = await fetch(sheetdbUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newUser)
       });
 
-      if (addResponse.ok) {
+  
         setMessage("Registration successful! Redirecting to login...");
-        setTimeout(() => navigate("/login"), 2000);
-      } else {
-        setMessage("Registration failed. Please try again.");
-      }
+        setTimeout(() => navigate("/Login"), 2000);
+
     } catch (error) {
       console.error("Registration error:", error);
       setMessage("Something went wrong.");

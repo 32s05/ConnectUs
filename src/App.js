@@ -12,6 +12,9 @@ import ServicePage from "./pages/ServicePage";
 import Provider_EditProfile from "./pages/Provider_EditProfile";
 import Provider_EditService from "./pages/Provider_EditService";
 import ServiceRequests from "./pages/Provider_ServiceRequests";
+import Customer_EditProfile from "./pages/Customer_EditProfile";
+
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -30,6 +33,7 @@ function App() {
         {/* Customer Paths */}
         <Route path="/Customer_Dashboard" element={<Dashboard />} />
         <Route path="/services" element={<ServicePage />} />
+        <Route path="/Customer_Edit-Profile" element={<Customer_EditProfile />} />
 
         {/* Provider Paths */}
         <Route path="/Provider_Dashboard" element={<ProviderDashboard />} />

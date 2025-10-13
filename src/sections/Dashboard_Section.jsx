@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-// 👈 Replace useNavigate with Link
 import { Link } from "react-router-dom"; 
 import "../assets/style.css";
 
 const Dashboard_Section = () => {
-  // Define all categories for the sidebar
   const categories = ["Tutoring", "Cleaning", "Catering", "Delivery", "Professional"];
   const [selectedCategory, setSelectedCategory] = useState("Tutoring"); 
 
-  // Service data (only Tutoring Service Alpha remaining)
+
   const services = [
     {
       id: 1,
@@ -58,7 +56,6 @@ const Dashboard_Section = () => {
                 </p>
                 <p className="service-description">{service.description}</p>
                 
-                {/* 👈 Replaced the <button> with <Link> */}
                 <Link 
                     to="/services" 
                     className="view-more-btn"

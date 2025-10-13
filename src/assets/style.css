@@ -390,8 +390,8 @@ footer {
 /*Register As*/
 
 .registeras-container {
-  background-color: #e4ebfa;
-  min-height: 100vh;
+  background-color: #eaf1fb;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -816,7 +816,7 @@ footer {
   width: 220px;
   background-color: #eaf1fb;
   padding: 20px;
-  border-right: 2px solid #cfd8dc;
+  border-right: 2px solid #eaf1fb;
 }
 
 .sidebar-title {

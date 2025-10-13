@@ -146,7 +146,7 @@ function Navbar2() {
 
             <ul className="c-sidebar-menu mt-5"> 
             <li><a href="/Customer_Dashboard">Dashboard</a></li> 
-            <li><a href="/Customer_My-Requests">My Requests</a></li> 
+            <li><a href="/Customer_My-Bookings">My Bookings</a></li> 
             <li><a href="/Customer_Edit-Profile">Edit Profile</a></li> 
 
 

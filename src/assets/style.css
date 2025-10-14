@@ -735,23 +735,18 @@ footer {
     font-weight: 600;
 }
 
-/* Main Content: Takes up the remaining space */
 .main-content {
-    flex: 1; /* Takes all available remaining space */
+    flex: 1;
     padding-left: 40px;
-    /* Ensure no residual 'display: flex' that conflicts with the service profile */
 }
 
-/* Single Service Profile (The large card) */
 .service-profile {
-    /* CRUCIAL FIX: Ensure content inside is horizontal (image and info) */
     display: flex; 
     align-items: flex-start;
-    gap: 40px; /* Spacing between image and text */
-    /* Add padding/background if you want a box around the whole profile */
+    gap: 40px;
 }
 
-.service-image { /* Matches .profile-pic and .service-image definitions */
+.service-image {
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -766,7 +761,7 @@ footer {
 .service-name {
     font-weight: 700;
     color: #212e4e;
-    font-size: 24px; /* Set a consistent size */
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
@@ -782,9 +777,7 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Book Button: Static positioning is much safer */
 .book-btn {
-    /* Removed absolute positioning */
     background-color: #1b2a4a;
     color: white;
     font-weight: 600;
@@ -793,7 +786,6 @@ footer {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
-    /* Add margin to position it below the description */
     margin-top: 10px;
 }
 
@@ -1239,6 +1231,95 @@ footer {
   }
 }
 
+/* service requests */
+.s-req-container{
+  background-color: #eaf1fb;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
+.booking-card:hover{
+  transform: translateY(-6px);
+  background-color: #D9E1F1;
+  box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.25);
+}
 
+.booking-card {
+  display: flex;
+  align-items: center;
+  background-color: #f2f6fc;
+  border-radius: 16px;
+  padding: 10px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
 
+.booking-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 700;
+  color: #212e4e;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.booking-note {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.view-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.view-btn {
+  background-color: #1b2a4a;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.view-btn:hover {
+  background-color: #1b2336;
+}
+
+@media (max-width: 725px) {
+  .booking-card{
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .booking-info{
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .view-btn{
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .booking-note{
+    word-break: break-word;
+  }
+}

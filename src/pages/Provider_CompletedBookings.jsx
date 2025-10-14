@@ -4,9 +4,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebaseconfig";
 import '../assets/style.css';
 import NavbarComponent from '../components/Navbar_Provider';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const ServiceReq = () => {
+const Bookings = () => {
   const [provider, setProvider] = useState(null);
   
   useEffect(() => {
@@ -40,7 +39,7 @@ const ServiceReq = () => {
         {provider ? (
           <>
             <h4 className="display-3 mb-5">
-              <span className="serviceNameDash">{provider.service_name}</span> <span className="dash">Booking Requests</span>
+              <span className="serviceNameDash">{provider.service_name}</span> <span className="dash">Completed Bookings</span>
             </h4>
           </>
         ) : (
@@ -53,24 +52,13 @@ const ServiceReq = () => {
             <div className="booking-info d-flex justify-content-between align-items-center mt-4">
               <div>
                 <h3 className="user-name">Juanito Doctor</h3>
-                <p className="user-info">date and time info here</p>
+                <p className="user-info">
+                  contact information
+                </p>
                 <p className="booking-note">Loremasjdsjdasjdujeuhjshdjasdkjhsdf</p>
               </div>
-              
-              <div>
-                <span className="badge bg-warning text-dark mb-2">Pending</span><br />
-                <div className='mb-5'>
-                  <button className="btn btn-success btn-sm me-2">
-                    <i className="bi bi-check-circle"></i>  Approve
-                  </button>
-                  <button className="btn btn-outline-danger btn-sm">
-                    <i className="bi bi-x-circle"></i>  Reject
-                  </button>
-                </div>
-                
-                <Link to="/services" className="view-btn mt-3">View Booking</Link>
-              </div>
-              
+
+              <Link to="/services" className="view-btn"> View Booking</Link>
             </div>
           </div>
       </div>
@@ -78,4 +66,4 @@ const ServiceReq = () => {
   );
 };
 
-export default ServiceReq;
+export default Bookings;

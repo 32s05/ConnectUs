@@ -148,11 +148,15 @@ const EditService = () => {
         <h4 className="fw-bold display-5 mb-4">Edit Service Information</h4>
         
         <div className="d-flex justify-content-center mb-2 text-center">
-            <label htmlFor="servicePhoto" className="upload3-box rounded-4 d-flex align-items-center justify-content-center">
-                {servicePreview || serviceData.serviceProfileUrl ? (
-                  <img src={servicePreview || serviceData.serviceProfileUrl} alt="Service Preview" className="preview"/>
-                ) : ("Upload Service Photo")}
-              </label>
+            <label htmlFor="profilePhoto" className="upload3-box rounded-4 d-flex align-items-center justify-content-center">
+              {servicePreview ? (
+                <img src={servicePreview} alt="Profile Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              ) : serviceData.serviceProfileUrl && serviceData.serviceProfileUrl !== "No picture uploaded" ? (
+                <img src={serviceData.serviceProfileUrl} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              ) : (
+                "Upload Profile Photo"
+              )}
+            </label>
             <input type="file" id="servicePhoto" accept="image/*" onChange={handleServiceChange} className="upload-input"/>
         </div>
         <label className="form-label fw-bold mb-4 d-flex justify-content-center">Service Photo</label>

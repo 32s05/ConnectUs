@@ -98,8 +98,8 @@ function Navbar() {
                 />
                 
                 <div className="p-sidebar-nameCon mt-3"> 
-                    <h5 className="p-sidebar-name mb-0">{provider.service_name || "Service"}</h5>
-                    <FaPenSquare className="edit-icon" onClick={() => navigate("/Provider_Edit-Service")} title="Edit Profile" style={{ cursor: "pointer" }}/>
+                    <h5 className="p-sidebar-name mb-0">{provider.service_name || "Service"}    <FaPenSquare className="edit-icon" onClick={() => navigate("/Provider_Edit-Service")} title="Edit Profile" style={{ cursor: "pointer" }}/>
+</h5>
                 </div>
                 
                 <div className="p-sidebar-nameCon">
@@ -112,7 +112,8 @@ function Navbar() {
 
             <ul className="p-sidebar-menu mt-5">
             <li><a href="/Provider_Dashboard">Dashboard</a></li>
-            <li><a href="/Provider_Service-Requests">Service Requests</a></li>
+            <li><a href="/Requests">Booking Requests</a></li>
+            <li><a href="/Bookings">Completed Bookings</a></li>
             <li><a href="/Provider_Edit-Service">Edit Service</a></li>
             <li><a href="/Provider_Edit-User-Profile">Edit User Profile</a></li>
             <hr className="mt-5" />

@@ -67,7 +67,7 @@ const EditService = () => {
   // adding price tier
   const addTier = () => {
     const newTiers = [...(serviceData.priceTiers || [])];
-    newTiers.push({ tier: "", price: 0 });
+    newTiers.push({ tier: "", price: 0,  tierDesc: ""});
     setServiceData({ ...serviceData, priceTiers: newTiers });
   };
 
@@ -207,11 +207,19 @@ const EditService = () => {
         <div className="mb-3">
           <label className="form-label fw-bold">Price Tiers</label>
           {(serviceData.priceTiers || []).map((tier, index) => (
-            <div key={index} className="d-flex align-items-center mb-2">
-              <input type="text" placeholder="Tier Name" className="form-control me-2" value={tier.tier} onChange={(e) => handleTierChange(index, "tier", e.target.value)}/>
-              <input type="number" placeholder="Price" className="form-control me-2" value={tier.price} onChange={(e) => handleTierChange(index, "price", e.target.value)}/>
-              
-              <button className="btn btn-danger" onClick={() => removeTier(index)}> - </button>
+            <div key={index} className="mb-3 p-2">
+              <div className="d-flex flex-column flex-md-row gap-2">
+                <input type="text" placeholder="Tier Name" className="form-control flex-grow-1" value={tier.tier} onChange={(e) => handleTierChange(index, "tier", e.target.value)}/>
+                <input type="number" placeholder="Price" className="form-control" value={tier.price} onChange={(e) => handleTierChange(index, "price", e.target.value)}/>
+              </div>
+            
+              <div className="mt-2">
+                <textarea placeholder="Tier Description" className="form-control" value={tier.tierDesc || ""} onChange={(e) => handleTierChange(index, "tierDesc", e.target.value)} rows={2}/>
+              </div>
+
+              <div className="d-flex justify-content-end mt-2">
+                <button className="btn btn-danger" onClick={() => removeTier(index)}>Remove</button>
+              </div>
             </div>
           ))}
           
@@ -220,11 +228,8 @@ const EditService = () => {
           </div>
         </div>
         
-        {/* Save Button */}
         <div>
-          <button className="register-btn" onClick={handleSave}>
-            Save Changes
-          </button>
+          <button className="register-btn" onClick={handleSave}> Save Changes </button>
         </div>
       </div>
     </div>

@@ -777,10 +777,10 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Book Button: Static positioning is much safer */
 .book-btn {
     background-color: #1b2a4a;
     color: white;
+    font-size: x-large;
     font-weight: 600;
     border: none;
     padding: 12px 28px;
@@ -791,13 +791,12 @@ footer {
 }
 
 .book-btn:hover {
-    background-color: #1b2336;
+    background-color: #31487a;
 }
 
 .back-button-container {
     width: 100%;
     text-align: right;     
-    margin-top: 500px;      
 }
 .back-link {
     text-decoration: none;
@@ -819,8 +818,28 @@ footer {
     border-color: #dae0e5;
 }
 
+/* pop up booking */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-
+.popup-content {
+  background: #D9E1F1;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
 
 
 /*Dashboard real na talaga*/
@@ -830,11 +849,14 @@ footer {
 }
 
 .dashboard-container {
+  font-family: 'Albert Sans', sans-serif;
   display: flex;
+  gap: 20px;
   padding: 20px;
 }
 
 .sidebar {
+  flex: 0 0 250px;
   width: 220px;
   background-color: #eaf1fb;
   padding: 20px;
@@ -878,8 +900,8 @@ footer {
   background-color: #f2f6fc;
   border-radius: 16px;
   padding: 20px;
-  margin-bottom: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  gap: 30px;
 }
 
 .service-image {
@@ -887,7 +909,6 @@ footer {
   height: 80px;
   border-radius: 50%;
   background-color: #cfd8dc;
-  margin-right: 20px;
 }
 
 .service-info {
@@ -914,17 +935,18 @@ footer {
 }
 
 .view-more-btn {
-  background-color: #263238;
+  text-decoration: none;
+  background-color: #1b2a4a;
   color: white;
-  padding: 6px 14px;
+  padding: 15px;
   border: none;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .view-more-btn:hover {
-  background-color: #1565c0;
+  background-color: #1b2336;
 }
 
 /* provider dashboard */
@@ -1253,7 +1275,12 @@ footer {
     width: 30%;               
     aspect-ratio: 1 / 1;
   }
+  
+  .form-control {
+    width: 100%;
+  }
 }
+
 @media (max-width: 576px) {
   .upload3-box{
     width: 50%;               
@@ -1290,7 +1317,6 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Avatar Placeholder */
 .avatar-placeholder {
     width: 70px;
     height: 70px;
@@ -1315,9 +1341,14 @@ footer {
 
 .service-name {
     font-size: 1.25em;
-    color: #3f4d67;
+    color: #1e2e4f;
     margin: 0 0 5px 0;
     font-weight: 600;
+}
+
+.price{
+    font-size: xx-large !important;
+    color: #31487A;
 }
 
 .service-meta {
@@ -1327,6 +1358,15 @@ footer {
     flex-wrap: wrap;
     gap: 5px; 
     margin-bottom: 10px;
+}
+
+.service-contact{
+    display: inline-block;
+    background-color: #1e2e4f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: smaller !important;
 }
 
 .meta-item {
@@ -1340,7 +1380,10 @@ footer {
     margin-bottom: 20px;
 }
 
-/* Status Badge Styling (Common) */
+.tier-card{
+    border: 2px solid #31487A !important;
+}
+
 .status-badge {
     padding: 5px 15px;
     border-radius: 20px;
@@ -1351,35 +1394,29 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* --- Status Color Coding (Unchanged) --- */
+/* status color coding */
 
-/* Blue: completed */
 .status-completed {
     background-color: #1a73e8;
 }
 
-/* Yellow: pending */
 .status-pending {
     background-color: #fbbc05;
     color: #3f4d67;
 }
 
-/* Green: ongoing/in progress */
 .status-ongoing {
     background-color: #34a853;
 }
 
-/* Red: cancelled */
 .status-cancelled {
     background-color: #ea4335;
 }
 
-/* Gray: Not started */
 .status-not-started {
     background-color: #9aa0a6;
 }
 
-/* Book Again Button */
 .book-again-container {
     display: flex;
     justify-content: flex-end; 

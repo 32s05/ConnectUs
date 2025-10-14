@@ -134,14 +134,14 @@ const EditProfile = () => {
         <div className="d-flex justify-content-center mb-2 text-center">
             <label htmlFor="profilePhoto" className="upload3-box rounded-4 d-flex align-items-center justify-content-center">
               {profilePreview ? (
-                <img src={profilePreview} alt="Profile Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              ) : serviceData.userProfileUrl && serviceData.userProfileUrl !== "No picture uploaded" ? (
-                <img src={serviceData.userProfileUrl} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              ) : (
-                "Upload Profile Photo"
-              )}
+                  <img src={profilePreview} alt="Profile Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+                ) : serviceData.userProfileUrl ? (
+                  <img src={serviceData.userProfileUrl} alt="Profile Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+                ) : (
+                  "Upload Profile Photo"
+                )}
             </label>
-            <input type="file" id="profilePhoto" accept="image/*" onChange={handleServiceChange} className="upload-input"/>
+            <input type="file" id="profilePhoto" accept="image/*" onChange={(e) => console.log(e.target.files[0])} className="upload-input" style={{ display: "none" }} />
         </div>
         <label className="form-label fw-bold mb-4 d-flex justify-content-center">Profile Photo</label>
         

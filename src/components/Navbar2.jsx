@@ -30,7 +30,7 @@ function Navbar2() {
 
 
     useEffect(() => {
-        const main = document.querySelector(".body"); // adjust selector if needed
+        const main = document.querySelector(".body"); 
         if (sidebarOpen) {
             document.body.style.overflow = "hidden";
             document.documentElement.style.overflow = "hidden"; // <html>
@@ -125,11 +125,21 @@ function Navbar2() {
             <div className="c-sidebar-header">
             {customer && ( 
                 <>
-                <img
-                    src={customer.profileUrl || "https://via.placeholder.com/80"} 
-                    alt="profile"
-                    className="c-sidebar-profile-pic"
-                />
+                {customer && customer.picture !== "No picture uploaded" ? (
+                    <img 
+                        src={customer.picture} 
+                        alt="profile" 
+                        className="profile-pic" 
+                        onClick={toggleSidebar} 
+                        style={{ cursor: "pointer" }} 
+                    />
+                    ) : (
+                    <FaUserCircle 
+                        className="profile-icon" 
+                        onClick={toggleSidebar} 
+                        style={{ cursor: "pointer" }}
+                    />
+                )}
                 
                 <div className="c-sidebar-nameCon mt-3"> 
                     <h5 className="c-sidebar-name mb-0">{customer.name || "Customer Name"}</h5> 

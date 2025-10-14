@@ -38,8 +38,8 @@ const CustomerDashboard = () => {
             <div className="registeras-container">
                 {customer ? (
                     <>
-                        <h4 className="display-3 my-5 mx-5">
-                            <span className="dash">Welcome </span><span className="customerNameDash">{customer.name ||'Your'}</span> <span className="sash">! </span>
+                        <h4 className="display-3 mt-5 mb-2 mx-5">
+                            <span className="sash">Welcome, </span><span className="dash">{customer.name ||'Your'}</span> <span className="sash">! </span>
                         </h4>
                         <DashboardSection customerData={customer} /> 
                     </>

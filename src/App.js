@@ -34,7 +34,7 @@ function App() {
 
         {/* Customer Paths */}
         <Route path="/Customer_Dashboard" element={<Dashboard />} />
-        <Route path="/services" element={<ServicePage />} />
+        <Route path="/services/:id" element={<ServicePage />} />
         <Route path="/Customer_Edit-Profile" element={<Customer_EditProfile />} />
         <Route path="/Customer_My-Bookings" element={<Customer_MyBookings />} />
         

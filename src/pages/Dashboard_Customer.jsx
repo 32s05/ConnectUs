@@ -39,7 +39,7 @@ const CustomerDashboard = () => {
                 {customer ? (
                     <>
                         <h4 className="display-3 my-5 mx-5">
-                            <span className="customerNameDash">{customer.name || 'Your'}</span> <span className="dash">Dashboard</span>
+                            <span className="dash">Welcome </span><span className="customerNameDash">{customer.name ||'Your'}</span> <span className="sash">! </span>
                         </h4>
                         <DashboardSection customerData={customer} /> 
                     </>

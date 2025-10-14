@@ -14,6 +14,7 @@ import Provider_EditService from "./pages/Provider_EditService";
 import ServiceRequests from "./pages/Provider_ServiceRequests";
 import Bookings from "./pages/Provider_CompletedBookings";
 import Customer_EditProfile from "./pages/Customer_EditProfile";
+import Customer_MyBookings from "./pages/Customer_MyBookings";
 
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -35,6 +36,8 @@ function App() {
         <Route path="/Customer_Dashboard" element={<Dashboard />} />
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Customer_Edit-Profile" element={<Customer_EditProfile />} />
+        <Route path="/Customer_My-Bookings" element={<Customer_MyBookings />} />
+        
 
         {/* Provider Paths */}
         <Route path="/Provider_Dashboard" element={<ProviderDashboard />} />

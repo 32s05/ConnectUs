@@ -1,35 +1,15 @@
-import React from "react"; 
+import React from "react";
 import { Link } from "react-router-dom";
 import "../assets/style.css";
 
 const ServicePageSection = () => {
-    const categories = ["Tutoring", "Cleaning", "Catering", "Delivery", "Professional"];
-    const currentServiceCategory = "Tutoring"; 
-    
-    return (
-        <div className="dashboard-container"> 
-            
-            {/* Sidebar - Links back to Dashboard */}
-            <aside className="sidebar">
-                <h4 className="sidebar-title">Categories</h4>
-                <ul className="category-list">
-                    {categories.map((cat) => (
-                        <li
-                            key={cat}
-                            className={`category-item ${currentServiceCategory === cat ? "active" : ""}`}
-                        >
-                            <Link 
-                                to={`/dashboard?category=${cat}`} 
-                                style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
-                            >
-                                {cat}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </aside>
+    const currentServiceCategory = "Tutoring";
 
-            <main className="main-content">
+    return (
+        <div className="dashboard-container">
+
+            <main className="slice-content">
+
                 <div className="service-profile">
                     <div className="service-image"></div>
                     <div className="service-info">
@@ -41,6 +21,15 @@ const ServicePageSection = () => {
                         <p className="service-description">[Service Description Here]</p>
                         <button className="book-btn">Book now</button>
                     </div>
+                </div>
+                {/* Container for the back button */}
+                <div className="back-button-container">
+                    {/* The button uses the 'back-button' class for styling */}
+                    <Link to="/Customer_Dashboard" className="back-link">
+                        <button className="back-button">
+                            &larr; Back to Dashboard
+                        </button>
+                    </Link>
                 </div>
             </main>
         </div>

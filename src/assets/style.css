@@ -1309,7 +1309,7 @@ footer {
 /* Base styles for the overall component */
 .my-bookings-container {
     padding: 20px;
-    background-color: #dae1f1;
+    background-color: #eaf1fb;
 }
 
 .title {
@@ -1320,7 +1320,7 @@ footer {
 
 /* Service Card Styling (RENAMED) */
 .booking-item-card {
-    background-color: #c8d1df;
+    background-color: #f2f6fc;
     border-radius: 12px;
     padding: 20px 30px;
     margin-bottom: 20px;

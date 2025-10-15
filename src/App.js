@@ -9,12 +9,12 @@ import RegisterAs from "./pages/RegisterAs";
 import Dashboard from "./pages/Dashboard_Customer";  
 import ProviderDashboard from "./pages/Dashboard_Provider";
 import ServicePage from "./pages/ServicePage";
-import Provider_EditProfile from "./pages/Provider_EditProfile";
-import Provider_EditService from "./pages/Provider_EditService";
+import ProviderEditProfile from "./pages/Provider_EditProfile";
+import ProviderEditService from "./pages/Provider_EditService";
 import ServiceRequests from "./pages/Provider_ServiceRequests";
 import Bookings from "./pages/Provider_CompletedBookings";
-import Customer_EditProfile from "./pages/Customer_EditProfile";
-import Customer_MyBookings from "./pages/Customer_MyBookings";
+import CustomerEditProfile from "./pages/Customer_EditProfile";
+import CustomerMyBookings from "./pages/Customer_MyBookings";
 
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -35,14 +35,14 @@ function App() {
         {/* Customer Paths */}
         <Route path="/Customer_Dashboard" element={<Dashboard />} />
         <Route path="/services/:id" element={<ServicePage />} />
-        <Route path="/Customer_Edit-Profile" element={<Customer_EditProfile />} />
-        <Route path="/Customer_My-Bookings" element={<Customer_MyBookings />} />
+        <Route path="/Customer_Edit-Profile" element={<CustomerEditProfile />} />
+        <Route path="/Customer_My-Bookings" element={<CustomerMyBookings />} />
         
 
         {/* Provider Paths */}
         <Route path="/Provider_Dashboard" element={<ProviderDashboard />} />
-        <Route path="/Provider_Edit-User-Profile" element={<Provider_EditProfile />} />
-        <Route path="/Provider_Edit-Service" element={<Provider_EditService />} />
+        <Route path="/Provider_Edit-User-Profile" element={<ProviderEditProfile />} />
+        <Route path="/Provider_Edit-Service" element={<ProviderEditService />} />
         <Route path="/Requests" element={<ServiceRequests />} />
         <Route path="/Bookings" element={<Bookings />} />
       </Routes>

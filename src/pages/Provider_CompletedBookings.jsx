@@ -39,7 +39,7 @@ const Bookings = () => {
         {provider ? (
           <>
             <h4 className="display-3 mb-5">
-              <span className="serviceNameDash">{provider.service_name}</span> <span className="dash">Completed Bookings</span>
+              <span className="serviceNameDash">Completed Bookings</span>
             </h4>
           </>
         ) : (

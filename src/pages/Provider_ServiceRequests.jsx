@@ -63,7 +63,7 @@ const ServiceReq = () => {
         {provider ? (
           <>
             <h4 className="display-3 mb-5">
-              <span className="serviceNameDash">{provider.service_name}</span> <span className="dash">Service Requests</span>
+              <span className="serviceNameDash">Booking Requests</span>
             </h4>
           </>
         ) : (
@@ -71,13 +71,13 @@ const ServiceReq = () => {
         )}
 
         {bookings.length === 0 ? (
-            <p>No booking requests yet.</p>
+          <p>No booking requests yet.</p>
           ) : (
             bookings.map((booking) => (
               <div key={booking.docId} className='booking-card p-4 p-md-5 mb-4'>              
-                <div className="service-image"></div> 
+                <div className="user-image"></div> 
                 
-                <div className="booking-info d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-4">
+                <div className="booking-info d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                   <div>
                     <h3 className="user-name">{booking.name}</h3>
                     <p className="user-info">{booking.date} at {booking.time}</p>
@@ -106,8 +106,7 @@ const ServiceReq = () => {
                 </div>
               </div>
             ))
-          )}
-                
+        )}            
       </div>
     </div>
 );

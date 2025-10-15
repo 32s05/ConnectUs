@@ -47,7 +47,7 @@ const EditProfile = () => {
   if (!serviceData) return <p>Loading provider data...</p>;
 
   // profile photo change
-  const handleServiceChange = (e) => {
+  const handleProfileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setProfilePhoto(file);
@@ -135,13 +135,13 @@ const EditProfile = () => {
             <label htmlFor="profilePhoto" className="upload3-box rounded-4 d-flex align-items-center justify-content-center">
               {profilePreview ? (
                   <img src={profilePreview} alt="Profile Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-                ) : serviceData.userProfileUrl ? (
+                ) : serviceData.userProfileUrl && serviceData.userProfileUrl !== "No picture uploaded" ? (
                   <img src={serviceData.userProfileUrl} alt="Profile Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
                 ) : (
                   "Upload Profile Photo"
                 )}
             </label>
-            <input type="file" id="profilePhoto" accept="image/*" onChange={(e) => console.log(e.target.files[0])} className="upload-input" style={{ display: "none" }} />
+            <input type="file" id="profilePhoto" accept="image/*" onChange={handleProfileChange} className="upload-input" style={{ display: "none" }} />
         </div>
         <label className="form-label fw-bold mb-4 d-flex justify-content-center">Profile Photo</label>
         

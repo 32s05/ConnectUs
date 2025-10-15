@@ -1,99 +1,133 @@
-import React from 'react';
-import '../assets/style.css'; 
-import Navbar2 from '../components/Navbar2';
-
-
-// Dummy data for services (kept for context)
-const services = [
-  {
-    id: 1,
-    name: 'Standard Plumbing Service',
-    status: 'Completed',
-    category: 'Home Repair',
-    hours: '9am - 5pm',
-    rating: '4.8',
-    yourRate: '5.0',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  },
-  {
-    id: 2,
-    name: 'Deep Cleaning Package',
-    status: 'Pending',
-    category: 'Cleaning',
-    hours: '8am - 12pm',
-    rating: '4.5',
-    yourRate: 'N/A',
-    description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  },
-  {
-    id: 3,
-    name: 'Electrical Wiring Inspection',
-    status: 'Ongoing',
-    category: 'Home Repair',
-    hours: '1pm - 3pm',
-    rating: '4.9',
-    yourRate: 'N/A',
-    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-  },
-  // ... more services
-];
-
-// Utility function remains the same
-const getStatusClass = (status) => {
-  switch (status.toLowerCase()) {
-    case 'completed':
-      return 'status-completed'; // Blue
-    case 'pending':
-      return 'status-pending'; // Yellow
-    case 'ongoing':
-    case 'in progress':
-      return 'status-ongoing'; // Green
-    case 'cancelled':
-      return 'status-cancelled'; // Red
-    case 'not started':
-    default:
-      return 'status-not-started'; // Gray
-  }
-};
+import React, { useEffect, useState } from "react";
+import "../assets/style.css";
+import Navbar2 from "../components/Navbar2";
+import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebaseconfig";
+import { Link } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const CustomerMyBookings = () => {
-  return (
-    <div className='body'> 
+  const [customer, setCustomer] = useState(null);
+  const [bookings, setBookings] = useState([]);
 
-    <Navbar2 />
-    <div className="my-bookings-container">
-      <h2 className="title">Recently Availed Services</h2>
-      {services.map((service) => (
-        // *** RENAMED CLASS HERE ***
-        <div key={service.id} className="booking-item-card">
-          <div className="card-header">
-            <div className="avatar-placeholder">
-              {/* This is the gray circle placeholder */}
-            </div>
-            <div className="service-details">
-              <h3 className="service-name">{service.name}</h3>
-              <div className="service-meta">
-                <span className="meta-item">{`[${service.category}]`}</span> |
-                <span className="meta-item">{`[Operating Hours: ${service.hours}]`}</span> |
-                <span className="meta-item">{`[Rating: ${service.rating}]`}</span> |
-                <span className="meta-item">{`[Your Rate: ${service.yourRate}]`}</span>
+  useEffect(() => {
+    const fetchCustomerBookings = async () => {
+      try {
+        const customerEmail = sessionStorage.getItem("loggedInUser");
+        if (!customerEmail) return;
+
+        // Find the logged-in customer document
+        const customerRef = collection(db, "customers");
+        const q = query(customerRef, where("email", "==", customerEmail));
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+          const customerDoc = snapshot.docs[0];
+          const customerData = customerDoc.data();
+          const customerId = customerData.id || customerDoc.id;
+
+          setCustomer(customerData);
+          sessionStorage.setItem("customerData", JSON.stringify(customerData));
+
+          // Fetch bookings associated with this customer
+          const bookingRef = collection(db, "bookings");
+          const bookingQuery = query(bookingRef, where("customerId", "==", customerId));
+          const bookingSnapshot = await getDocs(bookingQuery);
+          const bookingData = bookingSnapshot.docs.map((doc) => ({
+            docId: doc.id,
+            ...doc.data(),
+          }));
+
+          setBookings(bookingData);
+        }
+      } catch (error) {
+        console.error("Error fetching customer or bookings:", error);
+      }
+    };
+
+    fetchCustomerBookings();
+  }, []);
+
+  const cancelBooking = async (bookingId) => {
+    try {
+      const bookingRef = doc(db, "bookings", bookingId);
+      await updateDoc(bookingRef, { status: "cancelled" });
+      setBookings((prev) =>
+        prev.map((b) =>
+          b.docId === bookingId ? { ...b, status: "cancelled" } : b
+        )
+      );
+    } catch (error) {
+      console.error("Error cancelling booking:", error);
+    }
+  };
+
+  return (
+    <div className="body">
+      <Navbar2 />
+      <div className="my-bookings-container p-5">
+        {customer ? (
+          <h4 className="display-3 mb-5">
+            <span className="serviceNameDash">My Bookings</span>
+          </h4>
+        ) : (
+          <p></p>
+        )}
+
+        {bookings.length === 0 ? (
+          <p>No bookings yet.</p>
+        ) : (
+          bookings.map((booking) => (
+            <div key={booking.docId} className="booking-card p-4 p-md-5 mb-4">
+              <div className="user-image"></div>
+
+              <div className="booking-info d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                <div>
+                  <h3 className="user-name">{booking.serviceName || "Unknown Provider"}</h3>
+                  <p className="user-info">
+                    {booking.date} at {booking.time}
+                  </p>
+                  <p className="booking-note">
+                    <strong>Note:</strong> {booking.notes || "No notes provided" }
+                  </p>
+                  <p className="tier-info">Tier: {booking.tier}</p>
+                </div>
+
+                <div className="mt-3 mt-md-0 text-end">
+                  <span
+                    className={`badge ${
+                      booking.status === "pending"
+                        ? "bg-warning text-dark"
+                        : booking.status === "approved"
+                        ? "bg-success"
+                        : booking.status === "cancelled"
+                        ? "bg-danger"
+                        : "bg-secondary"
+                    } mb-2`}
+                  >
+                    {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                  </span>
+
+                  <div className="mb-3">
+                    {booking.status === "pending" && (
+                      <button
+                        className="btn btn-outline-danger btn-sm"
+                        onClick={() => cancelBooking(booking.docId)}
+                      >
+                        <i className="bi bi-x-circle"></i> Cancel Booking
+                      </button>
+                    )}
+                  </div>
+
+                  <Link to={`/ViewDetails/${booking.docId}`} className="view-btn mt-2">
+                    View Details 
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className={`status-badge ${getStatusClass(service.status)}`}>
-              Status: {service.status}
-            </div>
-          </div>
-          <p className="service-description">{service.description}</p>
-          <div className="book-again-container">
-            {service.status === 'Completed' && (
-              <button className="book-again-button">
-                Book again
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

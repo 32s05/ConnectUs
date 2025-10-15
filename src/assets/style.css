@@ -1489,8 +1489,8 @@ footer {
 }
 
 .user-image {
-  width: 80px;
-  height: 80px;
+  width: 100px !important;
+  height: 100px !important;
   border-radius: 50%;
   background-color: #cfd8dc;
 }
@@ -1527,7 +1527,6 @@ footer {
   border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 10px;
 }
 
 .view-btn:hover {

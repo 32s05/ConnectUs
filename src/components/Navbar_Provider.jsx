@@ -98,11 +98,10 @@ function Navbar() {
                 />
                 
                 <div className="p-sidebar-nameCon mt-3"> 
-                    <h5 className="p-sidebar-name mb-0">{provider.service_name || "Service"}    <FaPenSquare className="edit-icon" onClick={() => navigate("/Provider_Edit-Service")} title="Edit Profile" style={{ cursor: "pointer" }}/>
-</h5>
+                    <h5 className="p-sidebar-name mb-0">{provider.service_name || "Service"}    <FaPenSquare className="edit-icon" onClick={() => navigate("/Provider_Edit-Service")} title="Edit Profile" style={{ cursor: "pointer" }}/></h5>
                 </div>
                 
-                <div className="p-sidebar-nameCon">
+                <div className="p-sidebar-nameCon mt-3">
                     <p className="p-sidebar-service mb-0"> {provider.name || "Name"}</p>
                     <FaPenSquare className="edit-icon" onClick={() => navigate("/Provider_Edit-User-Profile")} title="Edit Profile" style={{ cursor: "pointer" }}/>
                 </div>

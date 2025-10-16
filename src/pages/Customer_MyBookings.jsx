@@ -33,10 +33,26 @@ const CustomerMyBookings = () => {
           const bookingRef = collection(db, "bookings");
           const bookingQuery = query(bookingRef, where("customerId", "==", customerId));
           const bookingSnapshot = await getDocs(bookingQuery);
-          const bookingData = bookingSnapshot.docs.map((doc) => ({
-            docId: doc.id,
-            ...doc.data(),
-          }));
+
+          const bookingData = await Promise.all(
+            bookingSnapshot.docs.map(async (doc) => {
+              const data = doc.data();
+              let providerProfile = "";
+              let serviceName = "";
+
+              if (data.providerId) {
+                const providerRef = collection(db, "providers");
+                const q = query(providerRef, where("id", "==", data.providerId));
+                const providerSnap = await getDocs(q);
+                if (!providerSnap.empty) {
+                  const providerDoc = providerSnap.docs[0].data();
+                  providerProfile = providerDoc.serviceProfileUrl || "";
+                  serviceName = providerDoc.service_name || "";
+                }
+              }
+              return { docId: doc.id, providerProfile, serviceName, ...data };
+            })
+          );
 
           setBookings(bookingData);
         }
@@ -79,9 +95,15 @@ const CustomerMyBookings = () => {
         ) : (
           bookings.map((booking) => (
             <div key={booking.docId} className="booking-card p-4 p-md-5 mb-4">
-              <div className="user-image"></div>
+              <div>
+                <img
+                  src={booking.providerProfile}
+                  alt="profile"
+                  className="user-image"
+                />
+              </div>
 
-              <div className="booking-info d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+              <div className="booking-info d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-center">
                 <div>
                   <h3 className="user-name">{booking.serviceName || "Unknown Provider"}</h3>
                   <p className="user-info">
@@ -93,17 +115,17 @@ const CustomerMyBookings = () => {
                   <p className="tier-info">Tier: {booking.tier}</p>
                 </div>
 
-                <div className="mt-3 mt-md-0 text-end">
+                <div className="mt-3 mt-md-0 justify-content-center align-items-center text-md-end">
                   <span
                     className={`badge ${
                       booking.status === "pending"
                         ? "bg-warning text-dark"
-                        : booking.status === "approved"
+                        : booking.status === "completed"
                         ? "bg-success"
                         : booking.status === "cancelled"
                         ? "bg-danger"
                         : "bg-secondary"
-                    } mb-2`}
+                    } `}
                   >
                     {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                   </span>
@@ -118,10 +140,10 @@ const CustomerMyBookings = () => {
                       </button>
                     )}
                   </div>
-
-                  <Link to={`/ViewDetails/${booking.docId}`} className="view-btn mt-2">
-                    View Details 
-                  </Link>
+                  
+                  <div className="d-flex align-items-md-end align-items-center mt-0">
+                    <Link to={`/ViewDetails/${booking.docId}`} className="view-btn">View Details</Link>
+                  </div>
                 </div>
               </div>
             </div>

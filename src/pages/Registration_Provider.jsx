@@ -18,6 +18,7 @@ const ProviderRegistration = () => {
   const [openingTime, setOpeningTime] = useState('');
   const [closingTime, setClosingTime] = useState('');
   const [description, setDescription] = useState('');
+  const [priceTiers, setPriceTiers] = useState([]);
   const [userProfileUrl, setUserProfileUrl] = useState();
   const [serviceProfileUrl, setServiceProfileUrl] = useState();
   const [message, setMessage] = useState('');
@@ -132,6 +133,7 @@ const ProviderRegistration = () => {
         openingTime,
         closingTime,
         description,
+        priceTiers,
         userProfileUrl: userProfileUrl || "No picture uploaded",
         serviceProfileUrl: serviceProfileUrl || "No picture uploaded",
       });
@@ -168,6 +170,7 @@ const ProviderRegistration = () => {
               openingTime={openingTime} setOpeningTime={setOpeningTime}
               closingTime={closingTime} setClosingTime={setClosingTime}
               description={description} setDescription={setDescription}
+              priceTiers={priceTiers} setPriceTiers={setPriceTiers}
 
               message={message} setMessage={setMessage}
               serviceMessage={serviceMessage} setServiceMessage={setServiceMessage}

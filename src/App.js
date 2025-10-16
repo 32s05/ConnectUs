@@ -16,7 +16,7 @@ import Bookings from "./pages/Provider_CompletedBookings";
 import CustomerEditProfile from "./pages/Customer_EditProfile";
 import CustomerMyBookings from "./pages/Customer_MyBookings";
 import ViewDetails from "./pages/ViewDetails";
-
+import ViewBooking from "./pages/Provider_ViewDetails";
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -48,6 +48,8 @@ function App() {
         <Route path="/Provider_Edit-Service" element={<ProviderEditService />} />
         <Route path="/Requests" element={<ServiceRequests />} />
         <Route path="/Bookings" element={<Bookings />} />
+        <Route path="/ViewBookings/:id" element={<ViewBooking/>} />
+        
       </Routes>
       <FooterComponent />
     </Router>

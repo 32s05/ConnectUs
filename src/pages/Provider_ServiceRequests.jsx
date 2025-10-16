@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc, orderBy } from "firebase/firestore";
 import { db } from "../firebaseconfig";
 import { FaUserCircle } from "react-icons/fa";
 import '../assets/style.css';
@@ -10,6 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const ServiceReq = () => {
   const [provider, setProvider] = useState(null);
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     const fetchProviderData = async () => {
@@ -31,7 +32,7 @@ const ServiceReq = () => {
 
           // fetch bookings for this provider
           const bookingRef = collection(db, "bookings");
-          const bookingQuery = query(bookingRef, where("providerId", "==", providerId));
+          const bookingQuery = query(bookingRef, where("providerId", "==", providerId), orderBy("createdAt", "asc"));
           const bookingSnapshot = await getDocs(bookingQuery);
 
           const bookingData = await Promise.all(
@@ -64,16 +65,19 @@ const ServiceReq = () => {
             })
           );
 
-          setBookings(bookingData);
+          const filteredBookings = bookingData.filter(b => b.status !== "completed");
+
+          setBookings(filteredBookings);
         }
       } catch (error) {
         console.error("Error fetching provider or bookings:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProviderData();
   }, []);
-
 
   const updateBookingStatus = async (bookingId, status) => {
     try {
@@ -103,7 +107,9 @@ const ServiceReq = () => {
           <span className="serviceNameDash">Booking Requests</span>
         </h4>
 
-        {bookings.length === 0 ? (
+        {loading ?(
+          <p>Loading Service Requests..</p>
+        ) : bookings.length === 0 ? (
           <p>No booking requests yet.</p>
           ) : (
             bookings.map((booking) => (
@@ -129,7 +135,7 @@ const ServiceReq = () => {
                     <span className={`badge ${booking.status === "pending" ? "bg-warning text-dark" : booking.status === "approved" ? "bg-success" : "bg-danger"} mb-2`}>
                       {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                     </span>
-                    <div className='mb-4'>
+                    <div className='mb-4 '>
                       {booking.status === "pending" ? (
                         <>
                           <button className="btn btn-success btn-sm me-2" onClick={() => updateBookingStatus(booking.docId, "not-started")}>
@@ -141,20 +147,22 @@ const ServiceReq = () => {
                         </>
                       ): booking.status === "not-started" ? (
                         <>
-                          <button className="btn btn-primary btn-sm" onClick={() => updateBookingStatus(booking.docId, "completed")}>
-                            Mark as Completed
-                          </button>
-                          <button className="btn btn-outline-danger btn-sm" onClick={() => updateBookingStatus(booking.docId, "cancelled")}>
-                            Cancel
-                          </button>
-                        </>
-                      ) : (
-                        <span className={`badge status-${booking.status}`}>
-                          {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
-                        </span>
-                      )}
-                    </div>
-                    <Link to="/services" className="view-btn">View Booking</Link>
+                          <button className="btn btn-primary btn-sm me-2" onClick={() => updateBookingStatus(booking.docId, "completed")}>
+                              Mark as Completed
+                            </button>
+                            <button className="btn btn-outline-danger btn-sm" onClick={() => updateBookingStatus(booking.docId, "cancelled")}>
+                              Cancel
+                            </button>
+                          </>
+                        ) : (
+                          <span className={`badge status-${booking.status}`}>
+                            {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                          </span>
+                        )}
+                      </div>
+                      <div className=" text-md-end text-center mt-3">
+                        <Link to={`/ViewBookings/${booking.docId}`} className="view-btn">View Booking</Link>
+                      </div>
                   </div>
                 </div>
               </div>

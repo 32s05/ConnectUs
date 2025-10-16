@@ -32,12 +32,19 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
 
   // Filter services by category and search term
   const filteredServices = services.filter((service) => {
-    const matchesCategory = service.category === selectedCategory;
     const matchesSearch =
+      !searchTerm ||
       service.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      service.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+      service.service_name?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesCategory = service.category === selectedCategory;
+
+    return searchTerm ? matchesSearch : matchesSearch && matchesCategory;
   });
+
+  const activeCategories = searchTerm
+    ? [...new Set(filteredServices.map(s => s.category))]
+    : [selectedCategory];
 
   function to12Hour(time24) {
     if (!time24) return "";
@@ -56,7 +63,7 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
           {categories.map((cat) => (
             <li
               key={cat}
-              className={`category-item ${selectedCategory === cat ? "active" : ""}`}
+              className={`category-item ${activeCategories.includes(cat) ? "active" : ""}`}
               onClick={() => setSelectedCategory(cat)}
             >
               {cat}
@@ -85,7 +92,7 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
                   />
                 </div>
                 <div className="service-info">
-                  <h3 className="service-name">{service.name}</h3>
+                  <h3 className="service-name">{service.service_name}</h3>
                   <p className="service-meta">
                     {service.category} | {displayHours} | {service.rating}
                   </p>

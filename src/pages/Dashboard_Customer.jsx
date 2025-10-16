@@ -39,7 +39,7 @@ const CustomerDashboard = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const servicesRef = collection(db, "services"); // adjust name if needed
+        const servicesRef = collection(db, "providers");
         const snapshot = await getDocs(servicesRef);
         const servicesList = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -56,15 +56,18 @@ const CustomerDashboard = () => {
 
   // Search logic
   useEffect(() => {
+    const termToSearch = searchTerm.toLowerCase().trim();
+
     const filtered = allServices.filter((service) =>
-      service.name?.toLowerCase().includes(searchTerm.toLowerCase())
+      service.name?.toLowerCase().includes(termToSearch) ||
+      service.service_name?.toLowerCase().includes(termToSearch)
     );
     setFilteredServices(filtered);
   }, [searchTerm, allServices]);
 
   return (
-    <div className="body">
-      <Navbar2 />
+    <div className="body overflow-hidden">
+      <Navbar2 className="sticky-top" />
       <div className="registeras-container">
         {customer ? (
           <>
@@ -75,7 +78,7 @@ const CustomerDashboard = () => {
             </h4>
 
             {/* 🔍 Search Bar (added here) */}
-            <div className="row mb-4">
+            <div className="row mb-4 px-4 px-md-0">
               <div className="col-md-8 mx-auto">
                 <div className="input-group shadow-sm searchBox-bg">
                   <input
@@ -94,7 +97,7 @@ const CustomerDashboard = () => {
 
             {/* Keep your existing dashboard layout */}
             <DashboardSection
-            searchTerm={searchTerm}
+              searchTerm={searchTerm}
               customerData={customer}
               filteredServices={filteredServices}
               

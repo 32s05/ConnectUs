@@ -11,9 +11,11 @@ const Home = () => {
     <div className="body">
         <NavbarComponent />
         <HeroComponent />
-        <DescriptionSection />
-        <ServicesSection />
-        <CTASection />
+        <div className="p-4">
+          <DescriptionSection />
+          <CTASection />
+        </div>
+        
     </div>
   );
 };

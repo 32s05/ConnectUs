@@ -66,6 +66,14 @@ const ViewDetails = () => {
     }
   };
 
+  function to12Hour(time24) {
+        if (!time24) return "";
+        const [hours, minutes] = time24.split(":").map(Number);
+        const ampm = hours >= 12 ? "PM" : "AM";
+        const hours12 = hours % 12 || 12;
+        return `${hours12}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+    }
+
   return (
     <div className="body">
       <Navbar2 />
@@ -75,11 +83,13 @@ const ViewDetails = () => {
 
         <div className="booking-details-card p-4 rounded shadow-sm bg-white">
           <p><strong>Booking ID:</strong> <b>{booking.bookingId}</b></p>
-          <p><strong>Service Name:</strong> {booking.serviceName || "N/A"}</p>
-          <p><strong>Provider ID:</strong> {booking.providerId || "N/A"}</p>
-          <p><strong>Created At:</strong> {formatTimestamp(booking.createdAt)}</p>
-          <p><strong>Date:</strong> {booking.date || "N/A"}</p>
-          <p><strong>Time:</strong> {booking.time || "N/A"}</p>
+          <p><strong>Customer ID:</strong> {booking.customerId || "N/A"}</p>
+          <p><strong>Customer Name:</strong> {booking.name || "N/A"}</p>
+          <p><strong>Phone Number:</strong> {booking.phone || "N/A"}</p>
+          <p><strong>E-mail:</strong> {booking.email || "N/A"}</p>
+          <p><strong>Booked at:</strong> {formatTimestamp(booking.createdAt)}</p>
+          <p><strong>Schedule Date:</strong> {booking.date || "N/A"}</p>
+          <p><strong>Schedule Time:</strong> {to12Hour(booking.time) || "N/A"}</p>
           <p><strong>Tier:</strong> {booking.tier || "N/A"}</p>
           <p><strong>Tier Price:</strong> {booking.tierPrice ? `₱${booking.tierPrice}` : "N/A"}</p>
           
@@ -95,20 +105,14 @@ const ViewDetails = () => {
           <p><strong>Notes:</strong> {booking.notes || "No notes provided"}</p>
         </div>
 
-        <div className="mt-4 d-flex flex-column flex-md-row gap-3">
+        <div className="mt-4 justify-content-end d-flex flex-column flex-md-row gap-3">
           <button
             className="btn btn-secondary"
             onClick={() => navigate(-1)}
           >
-            ← Back to My Bookings
+            ← Back to Bookings
           </button>
 
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate("/Customer_Dashboard")}
-          >
-            Find More Services
-          </button>
         </div>
       </div>
     </div>

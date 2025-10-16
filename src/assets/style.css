@@ -24,7 +24,7 @@ main {
 }
 
 footer {
-  margin-top: auto;
+  margin-top: 100px;
 }
 
 .navbar{
@@ -968,14 +968,8 @@ footer {
 }
 
 /* provider dashboard */
-.dashboard {
-  max-width: 1200px;       
-  margin: 0 auto;          
-  padding: 40px 20px;      
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  gap: 20px;               
+.dashProvider-container {
+  min-height: 100vh;              
 }
 
 .serviceNameDash {
@@ -992,6 +986,44 @@ footer {
   height: 4px;
   background-color: #192338;
   border-radius: 2px;
+}
+
+.totalServices-container{
+  max-width: 1200px;
+  width: 100%;
+  background-color: #b0ccf0;
+  box-shadow: 0 4px 20px rgba(75, 73, 73, 0.3);
+  color: #31487A;
+  border-radius: 50px;
+}
+
+.linkReq{
+  text-decoration: none !important;
+  color: #252f43;
+  font-weight: 600;
+}
+
+.linkReq:hover{
+  color:#4389e4;
+}
+
+@media (max-width: 850px) {
+  .totalServices-container {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
+
+  .totalServices-container .display-3 {
+    font-size: 2.2rem;
+  }
+
+  .linkReq.fs-2 {
+    font-size: 1.1rem !important;
+  }
+
+  .totalServices-container .col-md-4 {
+    margin-bottom: 1.5rem;
+  }
 }
 
 /*Navbar2*/

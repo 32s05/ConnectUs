@@ -55,11 +55,11 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container d-flex flex-lg-row flex-column p-md-5">
       {/* Sidebar */}
       <aside className="sidebar">
         <h3 className="sidebar-title">Categories</h3>
-        <ul className="category-list ms-4">
+        <ul className="category-list d-flex flex-row flex-lg-column overflow-auto gap-5 gap-md-2 text-nowrap ms-md-2 ms-0">
           {categories.map((cat) => (
             <li
               key={cat}
@@ -81,7 +81,7 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
             const displayHours = `${to12Hour(service.openingTime)} - ${to12Hour(service.closingTime)}`;
             return (
               <div
-                className="service-card d-flex justify-content-between align-items-center p-5 my-4"
+                className="service-card d-flex flex-column flex-lg-row justify-content-between align-items-center p-5 my-4"
                 key={service.docuId}
               >
                 <div className="service-image">

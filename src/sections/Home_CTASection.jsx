@@ -4,9 +4,9 @@ import '../assets/style.css';
 
 function CTASection(){
     return(
-        <section className="cta-section my-5">
+        <section className="cta-section">
             <div className="container">
-                <div className="row g-4">
+                <div className="row g-5">
                 
                 {/* Customers */}
                 <div className="col-md-6">

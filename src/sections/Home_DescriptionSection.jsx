@@ -10,7 +10,7 @@ function DescriptionSection() {
           <img src={logo}  alt="ConnectUs Logo" className="img-fluid logo-large"/>
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-6 p-4">
           <p className="lead">
             <strong>ConnectUs</strong> is the premier platform designed to 
             effortlessly bridge the gap between service-seekers and service-providers. 

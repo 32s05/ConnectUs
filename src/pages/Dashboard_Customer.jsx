@@ -78,7 +78,7 @@ const CustomerDashboard = () => {
             </h4>
 
             {/* 🔍 Search Bar (added here) */}
-            <div className="row mb-4 px-4 px-md-0">
+            <div className="row mb-2 px-4 px-md-0">
               <div className="col-md-8 mx-auto">
                 <div className="input-group shadow-sm searchBox-bg">
                   <input

@@ -686,7 +686,6 @@ footer {
 
 
 /* Service Page */
-
 .servicepage-container {
     background-color: #e9eef9;
     font-family: 'Albert Sans', sans-serif;
@@ -713,6 +712,7 @@ footer {
     margin-bottom: 20px;
 }
 
+/* category */
 .category-list {
     list-style: none;
     padding: 0;
@@ -733,20 +733,23 @@ footer {
     font-weight: 600;
 }
 
+
 /* Main Content: Takes up the remaining space */
 .main-content {
-    flex: 1; /* Takes all available remaining space */
+    flex: 1;
     padding-left: 40px;
+    flex: 1;
+    width: 100%;
+    overflow: visible;
 }
 
 .service-profile {
     display: flex; 
     align-items: flex-start;
-    gap: 40px; /* Spacing between image and text */
-    /* Add padding/background if you want a box around the whole profile */
+    gap: 40px;
 }
 
-.service-image { /* Matches .profile-pic and .service-image definitions */
+.service-image {
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -761,7 +764,7 @@ footer {
 .service-name {
     font-weight: 700;
     color: #212e4e;
-    font-size: 24px; /* Set a consistent size */
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
@@ -846,7 +849,7 @@ footer {
 
 .popup-content input[type="date"],
 .popup-content input[type="time"] {
-  height: 45px; /* same height */
+  height: 45px;
   line-height: 1.5;
   font-size: 1rem;
 }
@@ -869,7 +872,6 @@ footer {
 .dashboard-container {
   font-family: 'Albert Sans', sans-serif;
   display: flex;
-  gap: 20px;
   padding: 20px;
 }
 
@@ -888,9 +890,17 @@ footer {
   color: #37474f;
 }
 
+@media (max-width: 992px) {
+  .sidebar {
+    flex: none;
+    padding: 10px;
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
 .category-list {
   list-style: none;
-  padding: 0;
 }
 
 .category-item {
@@ -1559,6 +1569,7 @@ footer {
   border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 .view-btn:hover {
@@ -1576,12 +1587,7 @@ footer {
   .booking-info{
     flex-direction: column !important;
     align-items: center !important;
-  }
-
-  .view-btn{
-    text-align: center;
-    margin-top: 15px;
-  }
+  } 
 
   .booking-note{
     word-break: break-word;

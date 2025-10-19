@@ -2,10 +2,21 @@ import React from "react";
 import "../assets/style.css";
 
 function Forms({ name, setName, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword,
-    service_name, setServiceName, category, setCategory, location, setLocation, openingTime, setOpeningTime, closingTime, setClosingTime, 
+    service_name, setServiceName, category, setCategory, location, setLocation, operatingDays, setOperatingDays, openingTime, setOpeningTime, closingTime, setClosingTime, 
     description, setDescription, message, serviceMessage, nameRef, emailRef, passwordRef, confirmPasswordRef, serviceNameRef, 
     priceTiers, setPriceTiers
  }) {
+
+    // setting operating days
+    const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    
+    const handleDayChange = (day) => {
+        setOperatingDays(prev =>
+        prev.includes(day)
+            ? prev.filter(d => d !== day)
+            : [...prev, day]
+        );
+    };
 
     // price tier edits
     const handleTierChange = (index, field, value) => {
@@ -82,6 +93,19 @@ function Forms({ name, setName, email, setEmail, password, setPassword, confirmP
                 <div className="form-group">
                     <label className="form-label"><span className="required">*</span> Location</label>
                     <input type="text" placeholder="Enter location" required value={location} onChange={(e) => setLocation(e.target.value)}/>
+                </div>
+
+                <div className="form-group">
+                    <label className="form-label">
+                        <span className="required">*</span> Operating Days <small><i> (Choose your operating days)</i></small></label>
+                    <div className="d-flex flex-wrap gap-3 mt-2">
+                        {daysOfWeek.map(day => (
+                        <label key={day} className="form-check-label d-flex align-items-center flex-column flex-md-row gap-2 ms-3">
+                            <input type="checkbox" checked={operatingDays.includes(day)} onChange={() => handleDayChange(day)}/>
+                            {day}
+                        </label>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="form-group">

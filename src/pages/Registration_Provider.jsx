@@ -15,6 +15,7 @@ const ProviderRegistration = () => {
   const [service_name, setServiceName] = useState('');
   const [category, setCategory] = useState('');
   const [location, setLocation] = useState('');
+  const [operatingDays, setOperatingDays] = useState([]);
   const [openingTime, setOpeningTime] = useState('');
   const [closingTime, setClosingTime] = useState('');
   const [description, setDescription] = useState('');
@@ -91,7 +92,6 @@ const ProviderRegistration = () => {
       return;
     }
       
-
     try {
       // check if email exists
       const customerRef = collection(db, "customers");
@@ -130,6 +130,7 @@ const ProviderRegistration = () => {
         service_name,
         category,
         location,
+        operatingDays,
         openingTime,
         closingTime,
         description,
@@ -167,6 +168,7 @@ const ProviderRegistration = () => {
               service_name={service_name} setServiceName={setServiceName}
               category={category} setCategory={setCategory}
               location={location} setLocation={setLocation}
+              operatingDays={operatingDays} setOperatingDays={setOperatingDays}
               openingTime={openingTime} setOpeningTime={setOpeningTime}
               closingTime={closingTime} setClosingTime={setClosingTime}
               description={description} setDescription={setDescription}

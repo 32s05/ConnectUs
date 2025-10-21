@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../assets/style.css";
 import Navbar2 from "../components/Navbar2";
-import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc, orderBy } from "firebase/firestore";
 import { db } from "../firebaseconfig";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -9,6 +9,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const CustomerMyBookings = () => {
   const [customer, setCustomer] = useState(null);
   const [bookings, setBookings] = useState([]);
+
+  const sortedBookings = [...bookings].sort((a,b) => {
+    const order = ["pending", "not-started", "completed", "cancelled"];
+    return order.indexOf(a.status) - order.indexOf(b.status);
+  });
 
   useEffect(() => {
     const fetchCustomerBookings = async () => {
@@ -31,7 +36,7 @@ const CustomerMyBookings = () => {
 
           // Fetch bookings associated with this customer
           const bookingRef = collection(db, "bookings");
-          const bookingQuery = query(bookingRef, where("customerId", "==", customerId));
+          const bookingQuery = query(bookingRef, where("customerId", "==", customerId), orderBy("date", "asc"));
           const bookingSnapshot = await getDocs(bookingQuery);
 
           const bookingData = await Promise.all(
@@ -90,10 +95,10 @@ const CustomerMyBookings = () => {
           <p></p>
         )}
 
-        {bookings.length === 0 ? (
+        {sortedBookings.length === 0 ? (
           <p>No bookings yet.</p>
         ) : (
-          bookings.map((booking) => (
+          sortedBookings.map((booking) => (
             <div key={booking.docId} className="booking-card p-4 p-md-5 mb-4">
               <div>
                 <img

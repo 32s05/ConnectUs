@@ -67,7 +67,7 @@ const CustomerDashboard = () => {
 
   return (
     <div className="body overflow-hidden">
-      <Navbar2 className="sticky-top" />
+      <Navbar2 />
       <div className="registeras-container">
         {customer ? (
           <>

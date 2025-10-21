@@ -99,7 +99,8 @@ const ProviderDashboard = () => {
     const chartData = Object.keys(countByDate).map(day => ({
       day,
       bookings: countByDate[day]
-    }));
+    }))
+    .sort((a, b) => new Date(b.day) - new Date(a.day));
 
     setWeeklyData(chartData);
   };

@@ -28,6 +28,12 @@ const EditService = () => {
           if (!data.priceTiers) {
             data.priceTiers = [{ tier: "Default", price: 0 }];
           }
+
+          // check if operating days exist
+          if (!data.operatingDays) {
+            data.operatingDays = []; 
+          }
+
           setServiceData({ ...data, docId: docSnap.id });
         } else {
           setMessage("Provider not found.");
@@ -54,6 +60,18 @@ const EditService = () => {
   // information changes
   const handleChange = (field, value) => {
     setServiceData({ ...serviceData, [field]: value });
+  };
+
+  // operating days edit
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    
+  const handleDayChange = (day) => {
+      setServiceData((prev) =>{
+        const updatedDays = prev.operatingDays?.includes(day)
+          ? prev.operatingDays.filter((d) => d!==day)
+          : [...(prev.operatingDays || []), day];
+        return { ...prev, operatingDays: updatedDays };
+      });
   };
 
   // price tier edits
@@ -122,6 +140,7 @@ const EditService = () => {
         category: serviceData.category,
         location: serviceData.location,
         description: serviceData.description,
+        operatingDays: serviceData.operatingDays,
         openingTime: serviceData.openingTime,
         closingTime: serviceData.closingTime,
         priceTiers: serviceData.priceTiers,
@@ -187,6 +206,19 @@ const EditService = () => {
           <input type="text" className="form-control" value={serviceData.location} onChange={(e) => handleChange("location", e.target.value)}/>
         </div>
 
+        {/* Operating Days */}
+        <div className="mb-3">
+          <label className="form-label fw-bold">Operating Days <small><i> (Choose your operating days)</i></small></label>
+          <div className="d-flex flex-wrap gap-3 mt-2">          
+            {daysOfWeek.map(day => (
+              <label key={day} className="form-check-label d-flex align-items-center flex-column flex-md-row gap-2 ms-3">
+                  <input type="checkbox" checked={serviceData.operatingDays.includes(day)} onChange={() => handleDayChange(day)}/>
+                  {day}
+              </label>
+            ))}
+          </div>
+        </div>  
+      
         {/* Operating Hours */}
         <div className="mb-3">
           <label className="form-label fw-bold">Operating Hours</label>
@@ -202,7 +234,7 @@ const EditService = () => {
           <label className="form-label fw-bold">Description</label>
           <textarea className="form-control" value={serviceData.description} onChange={(e) => handleChange("description", e.target.value)}/>
         </div>
-
+        
         {/* Price Tiers */}
         <div className="mb-3">
           <label className="form-label fw-bold">Price Tiers</label>

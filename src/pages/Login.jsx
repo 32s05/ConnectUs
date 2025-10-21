@@ -32,7 +32,7 @@ const Login = () => {
       if (!customersSnapshot.empty) {
         const dataCustomer = customersSnapshot.docs[0].data();
         sessionStorage.setItem("loggedInUser", email);
-        sessionStorage.setItem("role", "customer");
+        localStorage.setItem("role", "customer");
         localStorage.setItem("customerId", dataCustomer.id);
         navigate("/Customer_Dashboard");
         return;

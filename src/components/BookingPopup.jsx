@@ -44,6 +44,8 @@ const BookingPopup = ({ service, onClose }) => {
     // booking function
     if (!service) return null;
     const handleBook = async () => {
+        setMessage("");
+        
         if (!selectedTier || !name || !phone || !email || !date || !time) {
             setMessage("Please fill in all required fields!");
             return;
@@ -56,6 +58,16 @@ const BookingPopup = ({ service, onClose }) => {
 
         if (selectedTime < opening || selectedTime > closing) {
             setMessage(`Please select a time between ${opening} and ${closing}.`);
+            return;
+        }
+
+        // validate day
+        const selectedDay = new Date(date).toLocaleString("en-US", { weekday: "long" }); 
+        
+        const operatingDays = service.operatingDays || [];
+
+        if (!operatingDays.includes(selectedDay)) {
+            setMessage(`Sorry, bookings are only available on: ${operatingDays.join(", ")}.`);
             return;
         }
 

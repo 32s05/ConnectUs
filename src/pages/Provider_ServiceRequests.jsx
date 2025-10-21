@@ -11,6 +11,11 @@ const ServiceReq = () => {
   const [provider, setProvider] = useState(null);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const sortedBookings = [...bookings].sort((a,b) => {
+    const order = ["pending", "not-started", "completed", "cancelled"];
+    return order.indexOf(a.status) - order.indexOf(b.status);
+  });
   
   useEffect(() => {
     const fetchProviderData = async () => {
@@ -109,10 +114,10 @@ const ServiceReq = () => {
 
         {loading ?(
           <p>Loading Service Requests..</p>
-        ) : bookings.length === 0 ? (
+        ) : sortedBookings.length === 0 ? (
           <p>No booking requests yet.</p>
           ) : (
-            bookings.map((booking) => (
+            sortedBookings.map((booking) => (
               <div key={booking.docId} className='booking-card p-4 p-md-5 mb-4'>              
                 <div>
                   <div className="user-image">
@@ -132,7 +137,7 @@ const ServiceReq = () => {
                   </div>
                   
                   <div className="mt-3 mt-md-0 justify-content-center align-items-center">
-                    <span className={`badge ${booking.status === "pending" ? "bg-warning text-dark" : booking.status === "approved" ? "bg-success" : "bg-danger"} mb-2`}>
+                    <span className={`badge ${booking.status === "pending" ? "bg-warning text-dark" : booking.status === "approved" ? "bg-success" : booking.status === "not-started" ? "status-not-started": "bg-danger"} mb-2`}>
                       {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                     </span>
                     <div className='mb-4 '>
@@ -154,12 +159,8 @@ const ServiceReq = () => {
                               Cancel
                             </button>
                           </>
-                        ) : (
-                          <span className={`badge status-${booking.status}`}>
-                            {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
-                          </span>
-                        )}
-                      </div>
+                        ) : null}
+                    </div>
                       <div className=" text-md-end text-center mt-3">
                         <Link to={`/ViewBookings/${booking.docId}`} className="view-btn">View Booking</Link>
                       </div>

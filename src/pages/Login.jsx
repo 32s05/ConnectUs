@@ -65,7 +65,7 @@ const Login = () => {
   return (
     <div className="body">
       <NavbarComponent />
-        <div className="container py-0">
+        <div className="container p-5">
         <div className="row align-items-center justify-content-center g-0">
           <div className="col-md-6 text-center mb-4 mb-md-0">
             <Logo />

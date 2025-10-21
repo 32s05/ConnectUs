@@ -52,11 +52,10 @@ const ServicePageSection = () => {
                       <img src={service.serviceProfileUrl} alt="profile" className="service-image" />
                     </div>
                     <div className="service-info">
-                        <h2 className="service-name mb-3 display-5 fw-bold">{service.service_name}</h2>
+                        <h2 className="service-name mb- display-5 fw-bold">{service.service_name}</h2>
                         <p className="service-meta">
                             <em>{service.category}</em> | 
-                            <em>{to12Hour(service.openingTime)} - {to12Hour(service.closingTime)}</em> | 
-                            <em>[Rating]</em> 
+                            <em><strong>Available {to12Hour(service.openingTime)} - {to12Hour(service.closingTime)} on {service.operatingDays?.join(", ")}</strong></em> 
                         </p>
                         <p className="service-contact mt-2">E-mail: {service.email}</p>
                         <p className="service-description mt-2">{service.description}</p>

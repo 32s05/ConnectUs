@@ -93,8 +93,8 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
                 </div>
                 <div className="service-info">
                   <h3 className="service-name">{service.service_name}</h3>
-                  <p className="service-meta">
-                    {service.category} | {displayHours} | {service.rating}
+                  <p className="service-meta mb-4 mb-lg-3">
+                    {service.category} | Available <strong>{displayHours}</strong> on <strong>{service.operatingDays?.join(", ")}</strong>
                   </p>
                   <p className="service-description">{service.description}</p>
                 </div>

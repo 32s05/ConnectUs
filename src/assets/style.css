@@ -979,7 +979,7 @@ footer {
 
 /* provider dashboard */
 .dashProvider-container {
-  min-height: 100vh;              
+  min-height: 75vh;              
 }
 
 .serviceNameDash {
@@ -1041,6 +1041,7 @@ footer {
 /* NAVBAR container */
 .navbar2 {
   position: fixed;
+  font-family: 'Albert Sans', sans-serif;
   background-color: #192338 !important;
   height: 70px;
   width: 100%;

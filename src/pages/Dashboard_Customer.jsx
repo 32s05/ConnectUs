@@ -104,7 +104,7 @@ const CustomerDashboard = () => {
             />
           </>
         ) : (
-          <p>Loading dashboard...</p>
+          <p className="d-flex justify-content-center m-5">Loading dashboard...</p>
         )}
       </div>
     </div>

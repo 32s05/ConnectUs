@@ -51,16 +51,6 @@ const BookingPopup = ({ service, onClose }) => {
             return;
         }
 
-        // validate time range
-        const selectedTime = time;
-        const opening = service.openingTime;
-        const closing = service.closingTime;
-
-        if (selectedTime < opening || selectedTime > closing) {
-            setMessage(`Please select a time between ${opening} and ${closing}.`);
-            return;
-        }
-
         // validate day
         const selectedDay = new Date(date).toLocaleString("en-US", { weekday: "long" }); 
         
@@ -68,6 +58,24 @@ const BookingPopup = ({ service, onClose }) => {
 
         if (!operatingDays.includes(selectedDay)) {
             setMessage(`Sorry, bookings are only available on: ${operatingDays.join(", ")}.`);
+            return;
+        }
+
+        function to12Hour(time24) {
+            if (!time24) return "";
+            const [hours, minutes] = time24.split(":").map(Number);
+            const ampm = hours >= 12 ? "PM" : "AM";
+            const hours12 = hours % 12 || 12;
+            return `${hours12}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+        }
+
+        // validate time range
+        const selectedTime = time;
+        const opening = service.openingTime;
+        const closing = service.closingTime;
+
+        if (selectedTime < opening || selectedTime > closing) {
+            setMessage(`Please select a time between ${to12Hour(opening)} and ${to12Hour(closing)}.`);
             return;
         }
 

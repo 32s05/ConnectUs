@@ -120,96 +120,95 @@ const ProviderDashboard = () => {
   return (
     <div className='body'> 
       <NavbarComponent />
-      <div className="dashbProvider-container">
+      <div className="dashProvider-container">
         {provider ? (
           <>
             <h4 className="display-3 mt-5 mb-3 mx-5">
               <span className="serviceNameDash">{provider.service_name}</span> <span className="dash">Dashboard</span>
             </h4>
-          </>
-        ) : (
-          <p>Loading dashboard...</p>
-        )}
 
-        {/* Services Tracker */}
+            {/* Services Tracker */}
 
-        <div className="d-flex justify-content-center">
-          <div className="totalServices-container p-5 m-5">
-            <div className="row">
-              {/* left, label */}
-              <div className="col-md-3">
-                <p className="serviceNameDash my-3 fw-bold display-5 text-md-start text-center">TOTAL SERVICES</p>
-              </div>
-
-              <div className="col-md-2 d-none d-md-flex justify-content-center">
-                <div style={{ borderRight: "3px solid #d9e1f1", height: "100%" }}></div>
-              </div>
-
-              <div className="col-12 d-flex d-md-none justify-content-center mb-4 mt-2">
-                <div style={{ borderBottom: "3px solid #d9e1f1", width: "100%" }}></div>
-              </div>
-
-              {/* right, number of pendings and completed */}
-              <div className="col-md-7 align-items-center">
-                <div className='row'>
-                  <div className='col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center text-center'>
-                    <p className='fw-bold display-3 me-2'>{pending}</p>
-                    <Link to="/Requests" className='linkReq fs-2'>pendings</Link>
+            <div className="d-flex justify-content-center">
+              <div className="totalServices-container p-5 m-5">
+                <div className="row">
+                  {/* left, label */}
+                  <div className="col-md-3">
+                    <p className="serviceNameDash my-3 fw-bold display-5 text-md-start text-center">TOTAL SERVICES</p>
                   </div>
-                  <div className='col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center text-center'>
-                    <p className='fw-bold display-3 me-2'>{request}</p>
-                    <Link to="/Requests" className='linkReq fs-2'>requests</Link>
+
+                  <div className="col-md-2 d-none d-md-flex justify-content-center">
+                    <div style={{ borderRight: "3px solid #d9e1f1", height: "100%" }}></div>
                   </div>
-                  <div className='col-md-4 d-flex  flex-row flex-md-column justify-content-center align-items-center text-center'>
-                    <p className='fw-bold display-3 me-2'>{completed}</p>
-                    <Link to="/Bookings" className='linkReq fs-2'>completed</Link>
+
+                  <div className="col-12 d-flex d-md-none justify-content-center mb-4 mt-2">
+                    <div style={{ borderBottom: "3px solid #d9e1f1", width: "100%" }}></div>
+                  </div>
+
+                  {/* right, number of pendings and completed */}
+                  <div className="col-md-7 align-items-center">
+                    <div className='row'>
+                      <div className='col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center text-center'>
+                        <p className='fw-bold display-3 me-2'>{pending}</p>
+                        <Link to="/Requests" className='linkReq fs-2'>pendings</Link>
+                      </div>
+                      <div className='col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center text-center'>
+                        <p className='fw-bold display-3 me-2'>{request}</p>
+                        <Link to="/Requests" className='linkReq fs-2'>requests</Link>
+                      </div>
+                      <div className='col-md-4 d-flex  flex-row flex-md-column justify-content-center align-items-center text-center'>
+                        <p className='fw-bold display-3 me-2'>{completed}</p>
+                        <Link to="/Bookings" className='linkReq fs-2'>completed</Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Earnings */}
-        <div className="serviceNameDash col-12 mt-1 text-center p-5">
-          <p className='text-muted fs-5 fst-italic fw-bold mb-3'>As of {dateNow}</p>
-          <p className="fw-bold display-3">Total Earnings: ₱ {earnings.toLocaleString("en-US", { minimumFractionDigits: 2 })}</p>
-        </div>
+            {/* Earnings */}
+            <div className="serviceNameDash col-12 mt-1 text-center p-5">
+              <p className='text-muted fs-5 fst-italic fw-bold mb-3'>As of {dateNow}</p>
+              <p className="fw-bold display-3">Total Earnings: ₱ {earnings.toLocaleString("en-US", { minimumFractionDigits: 2 })}</p>
+            </div>
 
-        {/* Charts */}
-        <div className="chart-section mb-5 p-5">
-          <div className="row">
-              {/* Total Services */}
-              <div className='col-md-6 text-center'>
-                <label className='fw-bold fs-3'>Total Services Tracker</label>
-                <ResponsiveContainer width="100%" height={400}>
-                  <PieChart data={totalService}>
-                    <Pie data={totalService} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
-                      {totalService.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
+            {/* Charts */}
+            <div className="chart-section mb-5 p-5">
+              <div className="row">
+                  {/* Total Services */}
+                  <div className='col-md-6 text-center'>
+                    <label className='fw-bold fs-3'>Total Services Tracker</label>
+                    <ResponsiveContainer width="100%" height={400}>
+                      <PieChart data={totalService}>
+                        <Pie data={totalService} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
+                          {totalService.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                        <Legend />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  <div className='col-md-6 mt-5 mt-md-0 text-center'>
+                    <label className='fw-bold fs-3 mb-3'>Daily Bookings Tracker</label>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <LineChart width={400} height={300} data={weeklyData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Line type="monotone" dataKey="bookings" fill="#31487a" strokeWidth={3} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
               </div>
-
-              <div className='col-md-6 mt-5 mt-md-0 text-center'>
-                <label className='fw-bold fs-3 mb-3'>Daily Bookings Tracker</label>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart width={400} height={300} data={weeklyData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="bookings" fill="#31487a" strokeWidth={3} />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-          </div>
-        </div>
-
+            </div>
+          </>
+        ) : (
+          <p className="d-flex justify-content-center m-5">Loading dashboard...</p>
+        )}
       </div>
     </div>
   );

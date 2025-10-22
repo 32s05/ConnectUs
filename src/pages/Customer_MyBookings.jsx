@@ -9,6 +9,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const CustomerMyBookings = () => {
   const [customer, setCustomer] = useState(null);
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const sortedBookings = [...bookings].sort((a,b) => {
     const order = ["pending", "not-started", "completed", "cancelled"];
@@ -63,6 +64,8 @@ const CustomerMyBookings = () => {
         }
       } catch (error) {
         console.error("Error fetching customer or bookings:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -87,15 +90,13 @@ const CustomerMyBookings = () => {
     <div className="body">
       <Navbar2 />
       <div className="my-bookings-container p-5">
-        {customer ? (
-          <h4 className="display-3 mb-5">
-            <span className="serviceNameDash">My Bookings</span>
-          </h4>
-        ) : (
-          <p></p>
-        )}
+        <h4 className="display-3 mb-5">
+          <span className="serviceNameDash">My Bookings</span>
+        </h4>
 
-        {sortedBookings.length === 0 ? (
+        {loading ? (
+          <p className="d-flex justify-content-center">Loading Bookings..</p>
+        ) : sortedBookings.length === 0 ? (
           <p>No bookings yet.</p>
         ) : (
           sortedBookings.map((booking) => (

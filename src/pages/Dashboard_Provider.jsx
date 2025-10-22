@@ -7,6 +7,10 @@ import { db } from "../firebaseconfig";
 import { Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, LineChart } from "recharts";
 
 const ProviderDashboard = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const [provider, setProvider] = useState(null);
   const [pending, setPending] = useState(0);
   const [request, setRequest] = useState(0);

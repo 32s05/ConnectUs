@@ -6,6 +6,10 @@ import { db } from "../firebaseconfig";
 import DashboardSection from "../sections/Dashboard_Section";
 
 const CustomerDashboard = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [customer, setCustomer] = useState(null);
   const [searchTerm, setSearchTerm] = useState(""); // Added search state
   const [allServices, setAllServices] = useState([]); // All services from DB

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebaseconfig";
@@ -8,6 +8,10 @@ import Forms from "../sections/Reg_Forms";
 import Picture from "../sections/Reg_Picture";
 
 const Registration = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');

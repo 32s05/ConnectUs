@@ -8,6 +8,10 @@ import LoginBox from "../sections/Login_LoginBox";
 import Logo from "../sections/Login_Logo";
 
 const Login = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');

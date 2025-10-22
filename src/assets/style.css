@@ -4,7 +4,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 body {
@@ -736,11 +735,11 @@ footer {
 
 /* Main Content: Takes up the remaining space */
 .main-content {
-    flex: 1;
-    padding-left: 40px;
-    flex: 1;
-    width: 100%;
-    overflow: visible;
+  flex: 1;
+  padding-left: 40px;
+  flex: 1;
+  width: 100%;
+  overflow: visible;
 }
 
 .service-profile {
@@ -873,6 +872,7 @@ footer {
   font-family: 'Albert Sans', sans-serif;
   display: flex;
   padding: 20px;
+  overflow: hidden;
 }
 
 .sidebar {

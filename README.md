@@ -46,6 +46,11 @@
 - CSS
 - Firebase
 
+## API Used
+
+- **Firebase Firestore** (database)
+- **Cloudinary** (for profile/service images)
+
 ## How to Run the Project
 
 1. **Download or clone** the project.

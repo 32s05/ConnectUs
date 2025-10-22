@@ -90,7 +90,7 @@ const ServiceReq = () => {
       await updateDoc(bookingRef, { status });
 
       if (status === "completed") {
-        // remove completed bookings after 3 seconds
+        // remove completed bookings from service req page after 3 seconds
         setTimeout(() => {
           setBookings(prev => prev.filter(b => b.docId !== bookingId));
         }, 3000);

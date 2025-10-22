@@ -56,7 +56,7 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
 
   return (
     <div className="dashboard-container d-flex flex-lg-row flex-column p-md-5">
-      {/* Sidebar */}
+      {/* Sidebar Categories */}
       <aside className="sidebar">
         <h3 className="sidebar-title">Categories</h3>
         <ul className="category-list d-flex flex-row flex-lg-column overflow-auto gap-5 gap-md-2 text-nowrap ms-md-2 ms-0">
@@ -72,7 +72,7 @@ const Dashboard_Section = ({ searchTerm = "" }) => {
         </ul>
       </aside>
 
-      {/* Main Content */}
+      {/* Service Cards */}
       <main className="main-content">
         {loading ? (
           <p>Loading services...</p>

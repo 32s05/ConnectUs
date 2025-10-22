@@ -76,41 +76,42 @@ const ProviderDashboard = () => {
     
   }, []);
 
+  // chart bookings data
   useEffect(() => {
-  const fetchBookingsPerDay = async () => {
-    const userId = localStorage.getItem("providerId");
-    if (!userId) return;
+    const fetchBookingsPerDay = async () => {
+      const userId = localStorage.getItem("providerId");
+      if (!userId) return;
 
-    const bookingRef = collection(db, "bookings");
-    const bookingQuery = query(bookingRef, where("providerId", "==", userId));
-    const bookingSnapshot = await getDocs(bookingQuery);
+      const bookingRef = collection(db, "bookings");
+      const bookingQuery = query(bookingRef, where("providerId", "==", userId));
+      const bookingSnapshot = await getDocs(bookingQuery);
 
-    // Count bookings per day
-    const countByDate = {};
+      // Count bookings per day
+      const countByDate = {};
 
-    bookingSnapshot.docs.forEach(doc => {
-      const booking = doc.data();
-      if (booking.status === "completed" || booking.status === "not-started") {
-        const date = booking.updateAt.toDate ? booking.updateAt.toDate() : new Date(booking.updateAt);
-        const day = date.toLocaleDateString("en-CA"); 
-        
-        if (!countByDate[day]) countByDate[day] = 0;
-        countByDate[day]++;
-      }
-    });
+      bookingSnapshot.docs.forEach(doc => {
+        const booking = doc.data();
+        if (booking.status === "completed" || booking.status === "not-started") {
+          const date = booking.createdAt.toDate ? booking.createdAt.toDate() : new Date(booking.createdAt);
+          const day = date.toLocaleDateString("en-CA"); 
+          
+          if (!countByDate[day]) countByDate[day] = 0;
+          countByDate[day]++;
+        }
+      });
 
-    // Convert object to array for Recharts
-    const chartData = Object.keys(countByDate).map(day => ({
-      day,
-      bookings: countByDate[day]
-    }))
-    .sort((a, b) => new Date(b.day) - new Date(a.day));
+      // Convert object to array for Recharts
+      const chartData = Object.keys(countByDate).map(day => ({
+        day,
+        bookings: countByDate[day]
+      }))
+      .sort((a, b) => new Date(b.day) - new Date(a.day));
 
-    setWeeklyData(chartData);
-  };
+      setWeeklyData(chartData);
+    };
 
-  fetchBookingsPerDay();
-}, []);
+    fetchBookingsPerDay();
+  }, []);
 
   // chart service data
   const totalService =  [
@@ -194,7 +195,8 @@ const ProviderDashboard = () => {
                       </PieChart>
                     </ResponsiveContainer>
                   </div>
-
+                        
+                  {/* Bookings Tracker */}
                   <div className='col-md-6 mt-5 mt-md-0 text-center'>
                     <label className='fw-bold fs-3 mb-3'>Daily Bookings Tracker</label>
                     <ResponsiveContainer width="100%" height={300}>

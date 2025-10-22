@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../assets/style.css';
 
 function Picture({ setImageUrl }) {
-  // Integrating Cloudinary to store user profile pictures
+  // using Cloudinary to store user profile pictures
   const cloudName = "do04thsku";
   const uploadPreset = "Customer_ProfilePictures";
   const [preview, setPreview] = useState(null);
@@ -13,7 +13,7 @@ function Picture({ setImageUrl }) {
     
     setPreview(URL.createObjectURL(file));
     
-    // Uploading Pictures to Cloudinary
+    // uploading pictures to Cloudinary
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", uploadPreset);

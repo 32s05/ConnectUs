@@ -21,11 +21,11 @@ function Navbar() {
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
     useEffect(() => {
-        const main = document.querySelector(".body"); // adjust selector if needed
+        const main = document.querySelector(".body"); 
         if (sidebarOpen) {
             document.body.style.overflow = "hidden";
-            document.documentElement.style.overflow = "hidden"; // <html>
-            if (main) main.style.overflow = "hidden"; // your wrapper
+            document.documentElement.style.overflow = "hidden";
+            if (main) main.style.overflow = "hidden"; 
         } else {
             document.body.style.overflow = "auto";
             document.documentElement.style.overflow = "auto";

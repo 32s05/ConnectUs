@@ -18,6 +18,7 @@ const EditProfile = () => {
 
   const passwordRef = useRef();
 
+  // fetching customer data
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {

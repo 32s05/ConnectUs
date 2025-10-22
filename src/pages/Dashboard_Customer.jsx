@@ -11,9 +11,9 @@ const CustomerDashboard = () => {
   }, []);
 
   const [customer, setCustomer] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // Added search state
-  const [allServices, setAllServices] = useState([]); // All services from DB
-  const [filteredServices, setFilteredServices] = useState([]); // Filtered list
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [allServices, setAllServices] = useState([]); 
+  const [filteredServices, setFilteredServices] = useState([]);
 
   // Fetch customer info
   useEffect(() => {
@@ -81,7 +81,7 @@ const CustomerDashboard = () => {
               <span className="sash">!</span>
             </h4>
 
-            {/* 🔍 Search Bar (added here) */}
+            {/* Search Bar */}
             <div className="row mb-2 px-4 px-md-0">
               <div className="col-md-8 mx-auto">
                 <div className="input-group shadow-sm searchBox-bg">
@@ -99,7 +99,6 @@ const CustomerDashboard = () => {
               </div>
             </div>
 
-            {/* Keep your existing dashboard layout */}
             <DashboardSection
               searchTerm={searchTerm}
               customerData={customer}

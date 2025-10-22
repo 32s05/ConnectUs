@@ -10,6 +10,7 @@ const ViewDetails = () => {
   const [booking, setBooking] = useState(null);
   const navigate = useNavigate();
 
+  // retrieving booking details from db
   useEffect(() => {
     const fetchBookingDetails = async () => {
       try {
